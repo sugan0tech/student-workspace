@@ -1,0 +1,20 @@
+.Card {
+  width: 20%;
+  height: 210px;
+  border: 3px solid #ffa500;
+  background-color: rgba(256, 256, 0, 50%);
+  opacity: 80%;
+}
+.image {
+  height: 80%;
+  width: 100%;
+}
+.title {
+  text-align: center;
+  margin-top: 5px;
+}
+.Card:hover {
+  border: 5px solid #ffa500;
+  background-color: rgba(256, 256, 0, 50%);
+  opacity: 100%;
+}

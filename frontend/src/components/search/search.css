@@ -1,0 +1,38 @@
+input {
+  /* border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden; */
+  border-style: hidden;
+  background-color: transparent;
+  font-size: 20px;
+  width: 100%;
+}
+
+#input {
+  width: 80%;
+}
+#search-bar {
+  width: 50%;
+  background-color: #4ca1a3;
+  border-radius: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+input:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+}
+#search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#microphone-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

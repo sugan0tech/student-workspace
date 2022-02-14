@@ -1,0 +1,23 @@
+.Assignment {
+  margin-top: 15px;
+}
+.createAssignmentContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #4ca1a3;
+}
+.createAssignment {
+  width: 90%;
+}
+
+.assignmentListContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.assignmentList {
+  width: 80%;
+}

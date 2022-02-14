@@ -1,0 +1,12 @@
+{
+    "name": "mongo-test",
+    "version": "1.0.0",
+    "description": "testing mongo atlas for student work space",
+    "main": "index.js",
+    "scripts": {
+        "test": "db",
+        "ndb": "nodemon index.js"
+    },
+    "author": "sugan0tech",
+    "license": "ISC"
+}

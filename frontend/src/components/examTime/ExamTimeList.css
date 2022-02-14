@@ -1,0 +1,57 @@
+.ExamTimeList .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.ExamTimeList .ExamTimeListHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.ExamTimeList {
+  width: 250px;
+  height: 425px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.ExamTimeList .title {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease-in-out;
+  position: relative;
+  border: 2px solid black;
+  border-bottom: 7px solid black;
+}
+
+.ExamTimeList .overlay {
+  width: 100%;
+  height: 100%;
+  background: #4ca1a3;
+  position: absolute;
+  border: 2px solid black;
+  top: 0;
+  left: 100%;
+  z-index: 1;
+  transition: 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.ExamTimeList.slide-in .overlay,
+.ExamTimeList.slide-in .title {
+  transform: translateX(-100%);
+  opacity: 1;
+}
+
+.ExamDeleteButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 25px;
+}

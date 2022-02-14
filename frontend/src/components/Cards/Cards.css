@@ -1,0 +1,33 @@
+.Cards {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.createCard {
+  width: 100%;
+  height: 100%;
+}
+.cardInfo {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 3%;
+  margin: 0;
+
+  grid-template-rows: 30px;
+  align-content: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffa500;
+}
+.textNew {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  margin-left: 34px;
+  margin-bottom: 0;
+}
+.textRecent {
+  grid-column: 2 / 2;
+  grid-row: 1;
+  margin: 0;
+}

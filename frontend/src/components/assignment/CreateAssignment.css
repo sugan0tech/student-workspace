@@ -1,0 +1,12 @@
+.assignmentButton {
+  width: 10%;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.formAssignment {
+  font-weight: bold;
+}

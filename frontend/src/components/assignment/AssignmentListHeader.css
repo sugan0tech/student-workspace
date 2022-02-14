@@ -1,0 +1,23 @@
+.AssignmentListHeader {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 3.5fr 2fr;
+  grid-template-rows: 40px;
+  font-weight: bold;
+}
+
+.textS.no {
+  grid-column: 1/4;
+  grid-row: 1;
+}
+.textSubject {
+  grid-column: 2/4;
+  grid-row: 1;
+}
+.textAssignment {
+  grid-column: 3/4;
+  grid-row: 1;
+}
+.textDue {
+  grid-column: 4/4;
+  grid-row: 1;
+}

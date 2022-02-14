@@ -1,0 +1,28 @@
+.pdfDisplay {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.hidden {
+  display: none;
+}
+.pdfDisplay .react-pdf__Page__canvas {
+  margin: 0;
+  border: 2px solid #007bff;
+  width: 120px !important;
+  height: 120px !important;
+}
+
+.imageDisplay {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin-bottom: 10px;
+}
+
+.imageDisplay .image {
+  border: 2px solid #007bff;
+  width: 120px;
+  height: 120px;
+  background-size: cover;
+  object-fit: contain;
+}

@@ -1,0 +1,23 @@
+.bookListHeading {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+  grid-template-rows: 30px;
+  align-content: center;
+  color: #4ca1a3;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.textBooks {
+  grid-column: 1/3;
+  grid-row: 1;
+}
+.textUploaded {
+  grid-column: 2/3;
+  grid-row: 1;
+}
+.textFileSize {
+  grid-column: 3/3;
+  grid-row: 1;
+}

@@ -1,0 +1,27 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #ffa500;
+  color: #4ca1a3;
+  height: 10vh;
+  border-radius: 1%;
+  margin-top: 5px;
+}
+#brand {
+  font-size: 25px;
+  font-weight: bold;
+}
+.nav-links {
+  margin: 0;
+  list-style: none;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 20px;
+  font-weight: 500;
+}
+.link a {
+  text-decoration: none !important;
+}
