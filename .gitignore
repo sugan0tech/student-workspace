@@ -1,4 +1,5 @@
-node_modules
-/keys.js
+/backend/node_modules
+/backend/keys.js
+
 /frontend/node_modules
-/mongo test/sampledata.js
+/backend/mongo test/sampledata.js
