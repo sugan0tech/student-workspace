@@ -1,5 +1,5 @@
 /backend/node_modules
 /backend/keys.js
-
+/backend/.env
 /frontend/node_modules
 /backend/mongo test/sampledata.js

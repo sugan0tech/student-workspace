@@ -8,8 +8,10 @@ const mongoose = require("./db");
 console.log(chalk.yellow("\n-----------------------------------------------------"));
 console.log(chalk.yellow("-----------------------------------------------------\n"));
 
-// middlewares
-//routes
+require('dotenv').config()
+console.log(process.env.MASTER_KEY)
+    // middlewares
+    //routes
 app
     .use("/login", login)
     .use("/register", register)
