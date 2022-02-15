@@ -7,15 +7,17 @@ const cookieParser = require("cookie-parser");
 const tok = require("../functions/token");
 require('dotenv').config()
 
-router.use((req, res, callback) => {
-    console.log(chalk.bold.yellow(`\n${req.url}@ ${new Date}\n`));
-    callback();
-})
-router.use(express.json())
-router.use(express.urlencoded({ extended: true }))
-router.use(cookieParser())
+router
+    .use((req, res, callback) => {
+        console.log(chalk.bold.yellow(`\n${req.url}@ ${new Date}\n`));
+        callback();
+    })
+    .use(express.json())
+    .use(express.urlencoded({ extended: true }))
+    .use(cookieParser())
 
-router.route("/")
+router
+    .route("/")
     .get((req, res) => {
         res.send("login page");
     })
