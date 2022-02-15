@@ -4,6 +4,7 @@ const func = require("../functions/auth_func");
 const chalk = require("chalk");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const tok = require("../functions/token");
 require('dotenv').config()
 
 router.use((req, res, callback) => {
@@ -21,6 +22,9 @@ router.route("/")
     .post((req, res) => {
         console.log(chalk.green("reqest api : "), req.body);
         console.log(req.cookies);
+        if (req.cookies.token != null) {
+            console.log(chalk.bold.green.inverse("token verified status :"), tok.verify(req.cookies.token, req.body.name));
+        }
         func.check(req.body.name, req.body.password).then(
             (value) => {
                 if (value == false) {
@@ -28,9 +32,7 @@ router.route("/")
                     res.send("user not found");
                 } else {
                     console.log(chalk.bold.green.inverse("\n\t user found \n"));
-                    const user = { name: req.body.name };
-                    const token = jwt.sign(user, process.env.MASTER_KEY);
-                    res.cookie(req.body.name, token);
+                    res.cookie("token", tok.create(req.body.name));
                     res.send("user found");
                 }
             },
