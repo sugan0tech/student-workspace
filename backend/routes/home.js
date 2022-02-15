@@ -13,12 +13,12 @@ router
 router
     .route('/')
     .get((req, res) => {
-        console.log(req.body);
+        console.log(req.cookies);
         if (token.verify(req.cookies.token, req.cookies.name)) {
-            console.log(chalk.green.bold("Verified token, authorized"));
+            console.log(chalk.green.bold("\n\tVerified token, authorized\n"));
             res.send(`Welcome ${req.cookies.name}`);
         } else {
-            console.log(chalk.red.bold("Failed token, Redirected!!!"));
+            console.log(chalk.red.bold("\n\tFailed token, Redirected!!!\n"));
             res.redirect(301, "/login");
         }
     })
