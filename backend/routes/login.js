@@ -17,31 +17,34 @@ router.use(cookieParser())
 
 router.route("/")
     .get((req, res) => {
-        res.send("<h1>login page<h1>");
+        res.send("login page");
     })
     .post((req, res) => {
         console.log(chalk.green("reqest api : "), req.body);
         console.log(req.cookies);
-        if (req.cookies.token != null) {
-            console.log(chalk.bold.green.inverse("token verified status :"), tok.verify(req.cookies.token, req.body.name));
-        }
-        func.check(req.body.name, req.body.password).then(
-            (value) => {
-                if (value == false) {
-                    console.log(chalk.bold.red("\n\t user not found \n"));
-                    res.send("user not found");
-                } else {
-                    console.log(chalk.bold.green.inverse("\n\t user found \n"));
-                    res.cookie("token", tok.create(req.body.name));
-                    res.cookie("name", req.body.name);
-                    res.send("user found");
+        const verifiedStatus = tok.verify(req.cookies.token, req.body.name);
+        console.log(chalk.bold.green.inverse("token verified status :"), verifiedStatus);
+        if (verifiedStatus) {
+            res.redirect(301, "/home");
+        } else {
+            func.check(req.body.name, req.body.password).then(
+                (value) => {
+                    if (value == false) {
+                        console.log(chalk.bold.red("\n\t user not found \n"));
+                        res.send("user not found");
+                    } else {
+                        console.log(chalk.bold.green.inverse("\n\t user found \n"));
+                        res.cookie("token", tok.create(req.body.name));
+                        res.cookie("name", req.body.name);
+                        res.send("user found");
+                    }
+                },
+                (err) => {
+                    console.log(chalk.red.bold.inverse("error occured"));
+                    res.send("error occurred in login");
                 }
-            },
-            (err) => {
-                console.log(chalk.red.bold.inverse("error occured"));
-                res.send("error occurred in login");
-            }
-        );
+            );
+        }
     })
 
 module.exports = router
