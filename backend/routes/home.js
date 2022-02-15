@@ -19,7 +19,7 @@ router
             res.send(`Welcome ${req.cookies.name}`);
         } else {
             console.log(chalk.red.bold("Failed token, Redirected!!!"));
-            res.redirect("/login", 301);
+            res.redirect(301, "/login");
         }
     })
 
