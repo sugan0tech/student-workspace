@@ -3,19 +3,19 @@ const app = express();
 const login = require("./routes/login");
 const register = require("./routes/register");
 const update = require("./routes/update");
+const home = require("./routes/home");
 const chalk = require("chalk");
 const mongoose = require("./db");
 console.log(chalk.yellow("\n-----------------------------------------------------"));
 console.log(chalk.yellow("-----------------------------------------------------\n"));
 
-require('dotenv').config()
-console.log(process.env.MASTER_KEY)
-    // middlewares
-    //routes
+// middlewares
+//routes
 app
     .use("/login", login)
     .use("/register", register)
-    .use("/update", update);
+    .use("/update", update)
+    .use("/home", home);
 
 // default page
 app.get("/", (req, res) => {

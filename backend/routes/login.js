@@ -33,12 +33,13 @@ router.route("/")
                 } else {
                     console.log(chalk.bold.green.inverse("\n\t user found \n"));
                     res.cookie("token", tok.create(req.body.name));
+                    res.cookie("name", req.body.name);
                     res.send("user found");
                 }
             },
             (err) => {
                 console.log(chalk.red.bold.inverse("error occured"));
-                res.send("error occured in login");
+                res.send("error occurred in login");
             }
         );
     })
