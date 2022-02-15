@@ -14,7 +14,7 @@ async function push(data) {
         }
     } catch (e) {
         console.log(e);
-        console.log(chalk.bold.red.inverse("Error !!! in auth function"));
+        console.log(chalk.bold.red.inverse("Error !!! in auth function (push)"));
     }
     return false;
 }
@@ -28,7 +28,7 @@ async function check(userName, userPassword) {
         }
     } catch (e) {
         console.log(e);
-        console.log(chalk.bold.red.inverse("Error !!! in auth function"));
+        console.log(chalk.bold.red.inverse("Error !!! in auth function (check)"));
     }
     return true;
 }
@@ -43,7 +43,7 @@ async function update(data) {
 
     } catch (e) {
         console.log(e);
-        console.log(chalk.bold.red.inverse("Error !!! in auth function"));
+        console.log(chalk.bold.red.inverse("Error !!! in auth function (update)"));
 
     }
 }
