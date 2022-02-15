@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 
 // middlewares
 router
-    .use(cookieParser)
+    .use(cookieParser())
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
 
