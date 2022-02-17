@@ -7,6 +7,7 @@ const ExamTimeSlice = createSlice({
   initialState,
   reducers: {
     addExam: (state, action) => {
+      console.log(action.payload);
       state.push(action.payload);
     },
     deleteExam: (state, action) => {
