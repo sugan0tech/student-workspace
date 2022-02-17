@@ -13,7 +13,7 @@ const ExamTimeCreate = () => {
   const dispatch = useDispatch();
   const handlePlus = () => {
     if (isFormActive) {
-      setInputFields([{ title: "", subject: "", date: "" }]);
+      setInputFields([{ id: Date(), title: "", subject: "", date: "" }]);
     }
     setIsFormActive(!isFormActive);
   };
