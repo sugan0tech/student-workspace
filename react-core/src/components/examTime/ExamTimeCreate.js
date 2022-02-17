@@ -7,7 +7,7 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 const ExamTimeCreate = () => {
   const [isFormActive, setIsFormActive] = useState(false);
   const [inputFields, setInputFields] = useState([
-    { title: "", subject: "", date: "" },
+    { id: Date(), title: "", subject: "", date: "" },
   ]);
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
