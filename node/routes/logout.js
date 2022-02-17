@@ -13,8 +13,8 @@ router
     .post((req, res) => {
         res.clearCookie("name");
         res.clearCookie("token");
+        console.log(chalk.yellowBright.bold("\n\t cleared cookies"));
         res.end();
-
     })
 
 module.exports = router;
