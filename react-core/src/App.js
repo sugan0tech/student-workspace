@@ -1,10 +1,10 @@
 import React from "react";
-import "./components/fontAwesomeIcons";
-//import { Counter } from "./features/counter/Counter";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "./components/header/Header";
 
 import "./App.css";
+import "./components/fontAwesomeIcons";
+
+import Header from "./components/header/Header";
 import BookCreate from "./components/desk/BookCreate/BookCreate";
 import Desk from "./components/desk/Desk";
 import Assignment from "./components/assignment/Assignment";
