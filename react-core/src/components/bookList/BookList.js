@@ -9,16 +9,7 @@ import { useHistory } from "react-router-dom";
 const BookList = () => {
   const books = useSelector((state) => state.booksDisplay);
   const history = useHistory();
-  // const books = [
-  //   {
-  //     title: "Chemistry",
-  //     lastOpened: "3 hours ago",
-  //     fileSize: "23mb",
-  //   },
-  //   { title: "Maths", lastOpened: "3 days ago", fileSize: "2mb" },
-  //   { title: "Physics", lastOpened: "1 hours ago", fileSize: "30mb" },
-  //   { title: "Computer", lastOpened: "3 days ago", fileSize: "230mb" },
-  // ];
+
   return (
     <div className="BookList">
       <BookListHeading />
