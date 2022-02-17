@@ -36,8 +36,8 @@ router
                         res.send("user not found");
                     } else {
                         console.log(chalk.bold.green.inverse("\n\t user found \n"));
-                        res.cookie("token", tok.create(req.body.name));
-                        res.cookie("name", req.body.name);
+                        res.cookie("token", tok.create(req.body.name), { maxAge: 30 * 24 * 60 * 60 * 1000 });
+                        res.cookie("name", req.body.name, { maxAge: 30 * 24 * 60 * 60 * 1000 });
                         res.send("user found");
                     }
                 },
