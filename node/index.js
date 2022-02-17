@@ -3,6 +3,7 @@ const app = express();
 const login = require("./routes/login");
 const register = require("./routes/register");
 const update = require("./routes/update");
+const logout = require("./routes/logout");
 const home = require("./routes/home");
 const chalk = require("chalk");
 const mongoose = require("./db");
@@ -15,7 +16,8 @@ app
     .use("/login", login)
     .use("/register", register)
     .use("/update", update)
-    .use("/home", home);
+    .use("/home", home)
+    .use("/logout", logout);
 
 // default page
 app.get("/", (req, res) => {
