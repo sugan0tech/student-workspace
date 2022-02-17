@@ -48,11 +48,11 @@ const Cards = () => {
           handleCreateClick={handleCreateClick}
         />
 
-        <div className="recent">
+        <>
           {recents.map((card, id) => (
             <Card key={id} title={card.title} src={card.src} />
           ))}
-        </div>
+        </>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ const CreateAssignment = () => {
   const dispatch = useDispatch();
 
   const [assignments, setAssignments] = useState({
+    id: Date(),
     subject: "",
     assignmentDetails: "",
     date: "",
@@ -83,6 +84,7 @@ const CreateAssignment = () => {
                   subject: "",
                   assignmentDetails: "",
                   date: "",
+                  id: Date(),
                 });
               }}
             />

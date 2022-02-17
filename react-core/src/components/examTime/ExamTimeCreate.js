@@ -24,7 +24,7 @@ const ExamTimeCreate = () => {
       return;
     }
     inputFields[0].title = title;
-
+    setTitle("");
     dispatch(addExam(inputFields));
     handlePlus();
   };
