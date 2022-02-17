@@ -42,7 +42,7 @@ router
                     }
                 },
                 (err) => {
-                    console.log(chalk.red.bold.inverse("error occured"));
+                    console.log(chalk.red.bold.inverse("error occurred"));
                     res.send("error occurred in login");
                 }
             );
