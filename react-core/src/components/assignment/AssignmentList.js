@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./AssignmentList.css";
 import { useDispatch } from "react-redux";
-import { changeIsComplete } from "./assignmentSlice";
+import { changeIsComplete, deleteAssignment } from "./assignmentSlice";
 
 import "./AssignmentListHeader.css";
 
@@ -35,7 +35,11 @@ const AssignmentList = ({
             &times;
           </i>
         )}
-        <FontAwesomeIcon className="trash-alt" icon="trash-alt" />
+        <FontAwesomeIcon
+          className="trash-alt"
+          icon="trash-alt"
+          onClick={() => dispatch(deleteAssignment(id))}
+        />
       </div>
     </div>
   );

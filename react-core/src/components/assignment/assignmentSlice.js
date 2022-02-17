@@ -19,13 +19,16 @@ const assignmentSlice = createSlice({
     },
     deleteAssignment: (state, action) => {
       const id = action.payload;
-      const index = state.filter((assignment) => {
+      let index = 0;
+      state.map((assignment, idx) => {
         if (id === assignment.id) {
-          return false;
+          console.log("detected");
+          index = idx;
         }
         return true;
       });
-      state = [...index];
+
+      state.splice(index, 1);
     },
   },
 });
