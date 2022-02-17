@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "all": "nodemon index.js"
+        "student-workspace": "nodemon index.js"
     },
     "author": "hari-sugan",
     "license": "ISC",
