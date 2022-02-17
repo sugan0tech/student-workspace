@@ -9,7 +9,7 @@
     "@react-pdf-viewer/core": "^2.4.3",
     "@react-pdf-viewer/default-layout": "^2.4.3",
     "@reduxjs/toolkit": "^1.5.1",
-    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "base64topdf": "^1.1.8",
@@ -22,7 +22,7 @@
     "react-pdf": "^5.3.0",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^3.0.1",
     "serialize-javascript": "^5.0.1"
   },
   "scripts": {
