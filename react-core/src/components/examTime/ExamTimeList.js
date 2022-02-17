@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./ExamTimeList.css";
+import { useDispatch } from "react-redux";
+import { deleteExam } from "./ExamTimeSlice";
 
 const ExamTimeList = ({ exams }) => {
   const [slideIn, setslideIn] = useState(false);
+  const dispatch = useDispatch();
   if (!exams) {
     return <div></div>;
   }
@@ -12,7 +15,12 @@ const ExamTimeList = ({ exams }) => {
       onClick={() => setslideIn(!slideIn)}
     >
       <div className="title">
-        <div className="ExamDeleteButton">&times;</div>
+        <div
+          className="ExamDeleteButton"
+          onClick={() => dispatch(deleteExam(exams[0].id))}
+        >
+          &times;
+        </div>
         {exams ? exams[0].title : ""}
       </div>
       <div className="overlay">

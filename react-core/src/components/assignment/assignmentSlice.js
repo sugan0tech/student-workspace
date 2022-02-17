@@ -7,20 +7,34 @@ const assignmentSlice = createSlice({
     addAssignment: (state, action) => {
       state.push(action.payload);
     },
+    changeIsComplete: (state, action) => {
+      const id = action.payload;
+      const index = state.map((assignment) => {
+        if (id === assignment.id) {
+          assignment.isCompleted = !assignment.isCompleted;
+        }
+        return assignment;
+      });
+      state = [...index];
+    },
     deleteAssignment: (state, action) => {
       const id = action.payload;
-      const index = state.map((assignment, index) => {
+      let index = 0;
+      state.map((assignment, idx) => {
         if (id === assignment.id) {
-          return index;
+          console.log("detected");
+          index = idx;
         }
-        return null;
+        return true;
       });
-      state.splice(index[0], 1);
+
+      state.splice(index, 1);
     },
   },
 });
 
-export const assignmentSelector = (state) => state.assignments.value;
-export const { addAssignment, deleteAssignment } = assignmentSlice.actions;
+export const assignmentSelector = (state) => state.assignments;
+export const { addAssignment, deleteAssignment, changeIsComplete } =
+  assignmentSlice.actions;
 
 export default assignmentSlice.reducer;

@@ -4,6 +4,10 @@
   grid-template-rows: 40px;
   color: #4ca1a3;
 }
+
+.AssignmentList.completed {
+  opacity: 40%;
+}
 .AssignmentList:hover {
   background-color: rgba(256, 256, 256, 90%);
 }
@@ -50,6 +54,14 @@
   grid-row: 1;
   margin: auto;
   border-bottom: 2px;
+}
+.cross {
+  grid-column: 2/3;
+  grid-row: 1;
+  margin: auto;
+  border-bottom: 2px;
+  cursor: default;
+  font-size: 2rem;
 }
 .trash-alt {
   grid-column: 3/3;

@@ -3,9 +3,10 @@ import CreateAssignment from "./CreateAssignment";
 import AssignmentList from "./AssignmentList";
 import AssignmentListHeader from "./AssignmentListHeader";
 import { useSelector } from "react-redux";
+import { assignmentSelector } from "./assignmentSlice";
 import "./Assignment.css";
 const Assignment = () => {
-  const assignments = useSelector((state) => state.assignments);
+  const assignments = useSelector(assignmentSelector);
 
   return (
     <div className="Assignment">
@@ -19,13 +20,15 @@ const Assignment = () => {
           <AssignmentListHeader />
           <hr />
 
-          {assignments.map((assignmentDetails, id) => (
+          {assignments.map((assignmentDetails, idx) => (
             <>
               <AssignmentList
-                sNo={(id + 1).toString()}
+                id={assignmentDetails.id}
+                sNo={(idx + 1).toString()}
                 subject={assignmentDetails.subject}
                 assignment={assignmentDetails.assignmentDetails}
                 date={assignmentDetails.date}
+                isCompleted={assignmentDetails.isCompleted}
               />
               <hr />
             </>
