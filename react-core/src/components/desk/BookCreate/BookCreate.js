@@ -4,17 +4,14 @@ import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { addBook } from "./BookCreateSlice";
 import { addBookDisplay } from "./BookDisplaySlice";
-import serialize from "serialize-javascript";
 import "./BookCreate.css";
+// used to convert image from file object form to Base64 form so we can use in image tag
+import getBase64 from "../../../base64";
 
 const BookCreate = () => {
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
   const dispatch = useDispatch();
 
-  const [src, setSrc] = useState("");
-  const [pdfFile, setPdfFile] = useState(null);
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
   const [links, setLinks] = useState([]);
   const [images, setImages] = useState([]);
   const [pdfs, setPdfs] = useState([]);
@@ -22,20 +19,9 @@ const BookCreate = () => {
   const [title, setTitle] = useState("");
   const [ifPdf, setIfPdf] = useState(false);
   const [size, setSize] = useState(2000);
+  const [normalImages, setNormalImages] = useState([]);
 
   const [uploadError, setUploadError] = useState(null);
-
-  const getBase64 = (file, cb) => {
-    let name = file.name;
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      cb(reader.result, name);
-    };
-    reader.onerror = function (error) {
-      console.log("Error: ", error);
-    };
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,6 +51,7 @@ const BookCreate = () => {
     setLinks([]);
     setImages([]);
     setPdfs([]);
+    setNormalImages([]);
     setIfPdf(false);
     setSize(2000);
   };
@@ -73,7 +60,7 @@ const BookCreate = () => {
     e.preventDefault();
     const fileList = e.target.files;
     setSize(size + fileList[0].size);
-
+    setImages([...images, fileList[0]]);
     getBase64(fileList[0], (result, name) => {
       if (result) {
         if (result.split(":")[1]) {
@@ -83,7 +70,7 @@ const BookCreate = () => {
             name: name,
             image: result,
           };
-          setImages([...images, data]);
+          setNormalImages([...normalImages, data]);
         } else {
           setUploadError("Can't Upload try another file");
         }
@@ -102,36 +89,17 @@ const BookCreate = () => {
   const handlePdfUpload = (e) => {
     e.preventDefault();
     const fileList = e.target.files;
+
     setSize(size + fileList[0].size);
 
-    getBase64(fileList[0], (result, name) => {
-      if (result) {
-        if (result.split(":")[1]) {
-          setUploadError(null);
-          const data = {
-            id: Date.now().toString(),
-            name: name,
-            pdf: result,
-          };
-          setPdfs([...pdfs, data]);
-        } else {
-          setUploadError("Can't upload try another file");
-        }
-      }
-    });
+    setPdfs([...pdfs, fileList[0]]);
+
     if (pdfs) {
       setIfPdf(true);
     }
     e.target.value = null;
   };
 
-  const handleNextButton = () => {
-    console.log("next button clicked");
-    setPageNumber(pageNumber + 1);
-  };
-  const handlepdfLoaded = ({ numPages }) => {
-    setNumPages(numPages);
-  };
   return (
     <div>
       <form>
@@ -145,7 +113,7 @@ const BookCreate = () => {
           onChange={(e) => setTitle(e.target.value)}
         />
         <div className="imageDisplay">
-          {images.map((image) => (
+          {normalImages.map((image) => (
             <img className="image" src={image.image}></img>
           ))}
         </div>
@@ -161,7 +129,7 @@ const BookCreate = () => {
         <p>{uploadError}</p>
         <div className={ifPdf ? "pdfDisplay" : "pdfDisplay hidden"}>
           {pdfs.map((pdf) => (
-            <Document className="pdf" file={pdf.pdf}>
+            <Document className="pdf" file={pdf}>
               <Page size="C10" pageNumber={1} />
             </Document>
           ))}
@@ -204,14 +172,3 @@ const BookCreate = () => {
 };
 
 export default BookCreate;
-
-{
-  /* <img src={src} />
-      <Document file={pdfFile} onLoadSuccess={handlepdfLoaded}>
-        <Page pageNumber={pageNumber} />
-      </Document>
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
-      <button onClick={handleNextButton}>next</button> */
-}
