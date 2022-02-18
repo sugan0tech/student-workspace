@@ -26,7 +26,7 @@ const BookList = () => {
             lastOpened={book.date}
             fileSize={
               book.size >= 0.1
-                ? `${Math.round(book.size)} mb`
+                ? `${book.size.toFixed(1)} mb`
                 : `${book.size * 1000} kb`
             }
           />
