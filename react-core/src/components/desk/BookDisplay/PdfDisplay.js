@@ -8,6 +8,7 @@ const PdfDisplay = ({ pdf }) => {
     console.log("next button clicked");
     setPageNumber(pageNumber + 1);
   };
+  console.log(pdf);
   return (
     <div>
       <Document className="pdf" file={pdf}>

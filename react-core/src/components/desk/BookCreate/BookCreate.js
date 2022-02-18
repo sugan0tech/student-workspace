@@ -128,10 +128,13 @@ const BookCreate = () => {
         />
         <p>{uploadError}</p>
         <div className={ifPdf ? "pdfDisplay" : "pdfDisplay hidden"}>
+          {/* show this in google forms style only name and size energy save */}
           {pdfs.map((pdf) => (
-            <Document className="pdf" file={pdf}>
-              <Page size="C10" pageNumber={1} />
-            </Document>
+            <div className="pdf">
+              <Document className="pdf-document" file={pdf}>
+                <Page className="pdfPage" pageNumber={1} />
+              </Document>
+            </div>
           ))}
         </div>
 
