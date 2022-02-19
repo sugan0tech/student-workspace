@@ -35,8 +35,9 @@ router
                         res.send("user not found");
                     } else {
                         console.log(chalk.bold.green.inverse("\n\t user found \n"));
-                        res.cookie("token", tok.create(req.body.mail), { maxAge: 30 * 24 * 60 * 60 * 1000 });
+                        res.cookie("token", tok.create({ mail: req.body.mail, password: req.body.password }), { maxAge: 30 * 24 * 60 * 60 * 1000 });
                         res.cookie("mail", req.body.mail, { maxAge: 30 * 24 * 60 * 60 * 1000 });
+                        // need to add user name as a cookie fetched from db
                         res.send("user found");
                     }
                 },

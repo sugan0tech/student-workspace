@@ -13,6 +13,7 @@ router
     .post((req, res) => {
         res.clearCookie("mail");
         res.clearCookie("token");
+        // res.clearCookie("name");
         console.log(chalk.yellowBright.bold("\n\t cleared cookies"));
         res.end();
     })

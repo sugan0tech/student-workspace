@@ -2,14 +2,17 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config()
 
 
-function create(userMail) {
-    return jwt.sign(userMail, process.env.MASTER_KEY);
+function create(payload) {
+    // payload = {mail, password}
+    return jwt.sign(payload, process.env.MASTER_KEY);
 }
 
 function verify(token, mail) {
     try {
         const tst = jwt.verify(token, process.env.MASTER_KEY);
-        return tst == mail;
+        // tst have {mail, password }
+        console.log("tst :", tst);
+        return tst.mail == mail;
     } catch (error) {
 
     }
