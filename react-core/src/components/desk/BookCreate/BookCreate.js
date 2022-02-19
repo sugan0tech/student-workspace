@@ -7,6 +7,7 @@ import { addBookDisplay } from "./BookDisplaySlice";
 import "./BookCreate.css";
 // used to convert image from file object form to Base64 form so we can use in image tag
 import getBase64 from "../../../base64";
+import PDFImage from "../../../media/pdf-125679.png";
 
 const BookCreate = () => {
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -112,11 +113,14 @@ const BookCreate = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <div className="imageDisplay">
+        <ul className="imageDisplay">
           {normalImages.map((image) => (
-            <img className="image" src={image.image}></img>
+            <li className="image-element">
+              <img className="image" src={image.image}></img>
+              <p>{image.name}</p>
+            </li>
           ))}
-        </div>
+        </ul>
         <label htmlFor="imageInput">Choose Images</label>
         <input
           className="form-group"
@@ -127,16 +131,18 @@ const BookCreate = () => {
           accept="image/*"
         />
         <p>{uploadError}</p>
-        <div className={ifPdf ? "pdfDisplay" : "pdfDisplay hidden"}>
+        <ul className={ifPdf ? "pdfDisplay" : "pdfDisplay hidden"}>
           {/* show this in google forms style only name and size energy save */}
-          {pdfs.map((pdf) => (
-            <div className="pdf">
-              <Document className="pdf-document" file={pdf}>
+          {pdfs.map((pdf, i) => (
+            <li key={i} className="pdf-element">
+              <img src={PDFImage} />
+              <p>{pdf.name}</p>
+              {/* <Document className="pdf-document" file={pdf}>
                 <Page className="pdfPage" pageNumber={1} />
-              </Document>
-            </div>
+              </Document> */}
+            </li>
           ))}
-        </div>
+        </ul>
 
         <label htmlFor="pdfInput">Choose Pdf files</label>
         <input
@@ -146,16 +152,15 @@ const BookCreate = () => {
           onChange={handlePdfUpload}
           accept="application/pdf"
         />
-        <div className="linkDisplay">
-          {links.map((link, id) => (
-            <div style={{ display: "block" }}>
-              <span>{id + 1} </span>
+        <ul className="linkDisplay">
+          {links.map((link) => (
+            <li className="link-element">
               <a href={link} target="_blank">
                 {link}
               </a>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
         <label htmlFor="linkInput">Enter topic related links</label>
         <input
           type="text"
@@ -165,7 +170,13 @@ const BookCreate = () => {
           value={link}
           onChange={(e) => setLink(e.target.value)}
         />
-        <button onClick={handleLinkUpload}>+</button>
+        <button
+          className="linkButton"
+          style={{ display: "block" }}
+          onClick={handleLinkUpload}
+        >
+          +
+        </button>
         <Button type="submit" onClick={handleSubmit}>
           Create
         </Button>

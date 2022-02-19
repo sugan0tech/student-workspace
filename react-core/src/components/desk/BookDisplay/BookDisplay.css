@@ -4,3 +4,8 @@
 .links ul {
   margin-left: 2%;
 }
+
+.images .images-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
