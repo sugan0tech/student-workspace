@@ -20,7 +20,7 @@ router
                     func.del(req.body.mail, req.body.password).then(
                         (resolve) => {
                             if (resolve) {
-                                console.log(chalk.green.bold("\n\tsuccessfully deleted\n"));
+                                console.log(chalk.green.bold(`\n\tsuccessfully deleted user ${req.body.mail}\n`));
                                 res.send("successfully deleted");
                             } else {
                                 console.log("not deleted");
