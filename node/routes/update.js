@@ -16,7 +16,7 @@ router
 router
     .route("/")
     .get((req, res) => {
-        res.send("gonna update");
+        res.send("updation page");
     })
     .post((req, res) => {
         check(req.body.mail, req.body.password).then(

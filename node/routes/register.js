@@ -18,19 +18,22 @@ router
         res.status(200).send("<h1>register page<h1>");
     })
     .post((req, res) => {
-        console.log(chalk.green("reqest api : "), req.body);
+        console.log(chalk.green("request api : "), req.body);
         func.push(req.body).then(
             (value) => {
-                if (value)
+                if (value) {
                     console.log(chalk.bold.green("\n\t data updated successfully\n"));
-                else
+                    res.send("registered successfully");
+                } else {
                     console.log(chalk.bold.red("\n\t user user already exists\n"));
+                    res.send("user alredy exists ");
+                }
             },
-            (err) => {
-                console.log(chalk.red.bold.inverse("Error occured in registration"));
+            (e) => {
+                console.log(e);
+                console.log(chalk.red.bold("\n\tError occurred in registration\n"), chalk.red.inverse.bold("\tlocation: ./router/register.js\n"));
             }
         );
-        res.send("ok thank you");
     })
 
 module.exports = router
