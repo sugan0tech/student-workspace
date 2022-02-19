@@ -1,0 +1,10 @@
+.ImageDisplay {
+  width: 600px;
+  height: 624px;
+}
+
+.ImageDisplay img {
+  background-size: cover;
+  object-fit: contain;
+  width: 100%;
+}

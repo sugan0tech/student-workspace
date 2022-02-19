@@ -1,0 +1,14 @@
+.PdfDisplay .Button {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.PdfDisplay .Button Button {
+  padding: 0px 5px;
+}
+.pdf {
+  margin: 0% 33%;
+}
+.PdfDisplay hr {
+  margin-top: 20px;
+}
