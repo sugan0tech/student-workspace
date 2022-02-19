@@ -4,7 +4,7 @@ const chalk = require("chalk");
 
 async function push(data) {
     try {
-        const valid = await user.exists({ $and: [{ name: data.name }] });
+        const valid = await user.exists({ $and: [{ mail: data.mail }] });
         console.log(data);
         if (valid == null) {
             data.password = hash(data.password);
@@ -37,7 +37,7 @@ async function update(data) {
     try {
         data.password = hash(data.password);
         data.changedAt = new Date;
-        const updateUsr = await user.updateOne({ name: data.name }, data);
+        const updateUsr = await user.updateOne({ mail: data.mail }, data);
         console.log(updateUsr);
         console.log(chalk.green.bold("\n\t User updated successfully"));
 
