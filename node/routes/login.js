@@ -21,7 +21,7 @@ router
         res.send("login page");
     })
     .post((req, res) => {
-        console.log(chalk.green("reqest api : "), req.body);
+        console.log(chalk.green("request api : "), req.body);
         console.log(chalk.green("request cookie :"), req.cookies);
         const verifiedStatus = tok.verify(req.cookies.token, req.cookies.mail);
         console.log(chalk.bold.green.inverse("token verified status :"), verifiedStatus);
@@ -41,7 +41,7 @@ router
                     }
                 },
                 (err) => {
-                    console.log(chalk.red.bold.inverse("error occurred"));
+                    console.log(chalk.red.bold("\n\terror occurred\n"), chalk.red.bold.inverse("\tlocation: ./routes/login.js\n"));
                     res.send("error occurred in login");
                 }
             );

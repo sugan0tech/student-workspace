@@ -18,7 +18,7 @@ router
             console.log(chalk.green.bold("\n\tVerified token, authorized\n"));
             res.send(`Welcome ${req.cookies.mail}`);
         } else {
-            console.log(chalk.red.bold("\n\tFailed token, Redirected!!!\n"));
+            console.log(chalk.red.bold("\n\tFailed token, Redirected!!!\n"), chalk.red.bold.inverse("\tlocation: ./routes/home.js\n"));
             res.redirect(301, "/login");
         }
     })
