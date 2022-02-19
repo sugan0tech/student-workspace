@@ -22,8 +22,8 @@ router
     })
     .post((req, res) => {
         console.log(chalk.green("reqest api : "), req.body);
-        console.log(req.cookies);
-        const verifiedStatus = tok.verify(req.cookies.token, req.body.mail);
+        console.log(chalk.green("request cookie :"), req.cookies);
+        const verifiedStatus = tok.verify(req.cookies.token, req.cookies.mail);
         console.log(chalk.bold.green.inverse("token verified status :"), verifiedStatus);
         if (verifiedStatus) {
             res.redirect(301, "/home");
@@ -36,7 +36,7 @@ router
                     } else {
                         console.log(chalk.bold.green.inverse("\n\t user found \n"));
                         res.cookie("token", tok.create(req.body.mail), { maxAge: 30 * 24 * 60 * 60 * 1000 });
-                        res.cookie("name", req.body.mail, { maxAge: 30 * 24 * 60 * 60 * 1000 });
+                        res.cookie("mail", req.body.mail, { maxAge: 30 * 24 * 60 * 60 * 1000 });
                         res.send("user found");
                     }
                 },
