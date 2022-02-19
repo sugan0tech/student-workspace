@@ -19,7 +19,7 @@ router
         res.send("gonna update");
     })
     .post((req, res) => {
-        check(req.body.name, req.body.password).then(
+        check(req.body.mail, req.body.password).then(
             (value) => {
                 if (value == false)
                     console.log(chalk.red.bold("\n\t Invalid user can't update"));

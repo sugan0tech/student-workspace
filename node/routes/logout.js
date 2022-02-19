@@ -11,7 +11,7 @@ router
 router
     .route("/")
     .post((req, res) => {
-        res.clearCookie("name");
+        res.clearCookie("mail");
         res.clearCookie("token");
         console.log(chalk.yellowBright.bold("\n\t cleared cookies"));
         res.end();
