@@ -48,4 +48,18 @@ async function update(data) {
     }
 }
 
-module.exports = { push, check, update }
+async function del(userMail, userPassword) {
+
+    try {
+        const valid = await user.deleteOne({ $and: [{ mail: userMail }, { password: hash(userPassword) }] });
+        if (valid == null) {
+            return false;
+        }
+    } catch (e) {
+        console.log(e);
+        console.log(chalk.bold.red("\n\tError !!! in auth function (check)\n"), chalk.bold.red.inverse("\tlocation: ./functions/auth_function.js\n"));;
+    }
+    return true;
+}
+
+module.exports = { push, check, update, del }

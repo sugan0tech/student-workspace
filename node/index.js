@@ -5,6 +5,7 @@ const register = require("./routes/register");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
 const update = require("./routes/update");
+const del = require("./routes/delete");
 const chalk = require("chalk");
 const mongoose = require("./db");
 console.log(chalk.yellow("\n-----------------------------------------------------"));
@@ -17,7 +18,8 @@ app
     .use("/register", register)
     .use("/login", login)
     .use("/logout", logout)
-    .use("/update", update);
+    .use("/update", update)
+    .use("/delete", del);
 
 // default page
 app.get("/", (req, res) => {
