@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const chalk = require("chalk");
+const tok = require("../functions/token");
+const cookieParser = require("cookie-parser");
 const { check, update } = require("../functions/auth_func");
 
 //middle wares
@@ -11,6 +13,7 @@ router
     })
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
+    .use(cookieParser());
 
 
 router
@@ -19,19 +22,32 @@ router
         res.send("updation page");
     })
     .post((req, res) => {
-        check(req.body.mail, req.body.password).then(
-            (value) => {
-                if (value == false)
-                    console.log(chalk.red.bold("\n\t Invalid user can't update"));
-                else {
-                    update(req.body);
+        console.log(chalk.green("request api : "), req.body);
+        console.log(chalk.green("request cookie :"), req.cookies);
+        const verifiedStatus = tok.verify(req.cookies.token, req.cookies.mail);
+        console.log(chalk.bold.green.inverse("token verified status :"), verifiedStatus);
+        if (verifiedStatus) {
+            check(req.body.mail, req.body.password).then(
+                (value) => {
+                    if (value) {
+                        update(req.body);
+                        res.send("updated");
+                    } else {
+                        console.log(chalk.red.bold("\n\tInvalid user can't update (auth failed)"));
+                        res.send("updation failed");
+                    }
+
+                },
+                (e) => {
+                    console.log(e);
+                    res.send("error in server");
                 }
-            },
-            (e) => {
-                console.log(chalk.red.bold(e));
-            }
-        )
-        res.send("updated");
+
+            )
+        } else {
+            res.redirect(301, "/login");
+            console.log(chalk.red.bold("\n\tInvalid user can't update (cookie failed)\n"), chalk.red.bold.inverse("\tlocation: ./routes/update.js\n"));
+        }
     })
 
 
