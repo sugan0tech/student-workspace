@@ -15,7 +15,7 @@ router
 router
     .route("/")
     .get((req, res) => {
-        res.status(200).send("<h1>register page<h1>");
+        res.status(200).send("register page");
     })
     .post((req, res) => {
         console.log(chalk.green("request api : "), req.body);
@@ -26,7 +26,7 @@ router
                     res.send("registered successfully");
                 } else {
                     console.log(chalk.bold.red("\n\t user user already exists\n"));
-                    res.send("user alredy exists ");
+                    res.send("user already exists ");
                 }
             },
             (e) => {
