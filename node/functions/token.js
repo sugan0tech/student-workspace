@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const jwt = require("jsonwebtoken");
 require("dotenv").config()
 
@@ -20,4 +21,15 @@ function verify(token, mail) {
 
 }
 
-module.exports = { create, verify }
+function getPayload(token) {
+    try {
+        return jwt.verify(token, process.env.MASTER_KEY);
+    } catch (e) {
+        console.log(e);
+        console.log(chalk.red.bold("\n\tError in Payload func\n"), chalk.red.bold.inverse("\tlocation: ./functions/token\n"));
+    }
+    return {};
+
+}
+
+module.exports = { create, verify, getPayload }

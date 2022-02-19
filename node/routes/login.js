@@ -26,7 +26,21 @@ router
         const verifiedStatus = tok.verify(req.cookies.token, req.cookies.mail);
         console.log(chalk.bold.green.inverse("token verified status :"), verifiedStatus);
         if (verifiedStatus) {
-            res.redirect(301, "/home");
+            const data = tok.getPayload(req.cookies.token);
+            func.check(data.mail, data.password).then(
+                (resolve) => {
+                    if (resolve) {
+                        console.log(chalk.green.bold("\n\ttoken cross referenced with db\n"))
+                        res.redirect(301, "/home");
+                    } else {
+                        res.send("account not found");
+                        console.log(chalk.red.bold("\n\ttoken cross referenced with db failed\n\tprobably account deleted\n"));
+                    }
+                },
+                (e) => {
+                    console.log(chalk.red.bold("\n\terror occurred in token db validation\n"), chalk.red.bold.inverse("\tlocation: ./routes/login\n"));
+                }
+            );
         } else {
             func.check(req.body.mail, req.body.password).then(
                 (value) => {
