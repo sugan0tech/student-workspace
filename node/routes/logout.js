@@ -11,6 +11,7 @@ router
 router
     .route("/")
     .post((req, res) => {
+        console.log(chalk.yellow.bold.inverse("\n    logout post request    \n"));
         res.clearCookie("mail");
         res.clearCookie("token");
         // res.clearCookie("name");

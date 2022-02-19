@@ -13,6 +13,7 @@ router
 router
     .route("/")
     .post((req, res) => {
+        console.log(chalk.yellow.bold.inverse("\n    Delete post request    \n"));
         func.check(req.body.mail, req.body.password).then(
             (resolve) => {
                 if (resolve) {

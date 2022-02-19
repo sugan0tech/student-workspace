@@ -15,9 +15,11 @@ router
 router
     .route("/")
     .get((req, res) => {
+        console.log(chalk.yellow.bold.inverse("\n    register get request    \n"));
         res.status(200).send("register page");
     })
     .post((req, res) => {
+        console.log(chalk.yellow.bold.inverse("\n    register post request    \n"));
         console.log(chalk.green("request api : "), req.body);
         func.push(req.body).then(
             (value) => {

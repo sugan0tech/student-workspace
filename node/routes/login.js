@@ -18,9 +18,11 @@ router
 router
     .route("/")
     .get((req, res) => {
+        console.log(chalk.yellow.bold.inverse("\n    login get request    \n"));
         res.send("login page");
     })
     .post((req, res) => {
+        console.log(chalk.yellow.bold.inverse("\n    login post request    \n"));
         console.log(chalk.green("request api : "), req.body);
         console.log(chalk.green("request cookie :"), req.cookies);
         const verifiedStatus = tok.verify(req.cookies.token, req.cookies.mail);

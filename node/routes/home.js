@@ -13,6 +13,7 @@ router
 router
     .route('/')
     .get((req, res) => {
+        console.log(chalk.yellow.bold.inverse("\n    home get request    \n"));
         console.log(req.cookies);
         if (token.verify(req.cookies.token, req.cookies.mail)) {
             console.log(chalk.green.bold("\n\tVerified token, authorized\n"));
