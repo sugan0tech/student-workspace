@@ -19,10 +19,10 @@ async function push(data) {
     return false;
 }
 
-async function check(userName, userPassword) {
+async function check(userMail, userPassword) {
 
     try {
-        const valid = await user.exists({ $and: [{ name: userName }, { password: hash(userPassword) }] });
+        const valid = await user.exists({ $and: [{ mail: userMail }, { password: hash(userPassword) }] });
         if (valid == null) {
             return false;
         }

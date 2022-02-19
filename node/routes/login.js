@@ -23,20 +23,20 @@ router
     .post((req, res) => {
         console.log(chalk.green("reqest api : "), req.body);
         console.log(req.cookies);
-        const verifiedStatus = tok.verify(req.cookies.token, req.body.name);
+        const verifiedStatus = tok.verify(req.cookies.token, req.body.mail);
         console.log(chalk.bold.green.inverse("token verified status :"), verifiedStatus);
         if (verifiedStatus) {
             res.redirect(301, "/home");
         } else {
-            func.check(req.body.name, req.body.password).then(
+            func.check(req.body.mail, req.body.password).then(
                 (value) => {
                     if (value == false) {
                         console.log(chalk.bold.red("\n\t user not found \n"));
                         res.send("user not found");
                     } else {
                         console.log(chalk.bold.green.inverse("\n\t user found \n"));
-                        res.cookie("token", tok.create(req.body.name), { maxAge: 30 * 24 * 60 * 60 * 1000 });
-                        res.cookie("name", req.body.name, { maxAge: 30 * 24 * 60 * 60 * 1000 });
+                        res.cookie("token", tok.create(req.body.mail), { maxAge: 30 * 24 * 60 * 60 * 1000 });
+                        res.cookie("name", req.body.mail, { maxAge: 30 * 24 * 60 * 60 * 1000 });
                         res.send("user found");
                     }
                 },
