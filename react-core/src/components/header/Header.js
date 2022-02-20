@@ -19,7 +19,7 @@ const Header = () => {
         <Link to="/exam-time">
           <li className="link">Exam time</li>
         </Link>
-        <Link to="/">
+        <Link to="/login">
           <li className="link">Log out</li>
         </Link>
       </ul>

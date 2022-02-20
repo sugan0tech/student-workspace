@@ -1,0 +1,69 @@
+.Login.base-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Login.base-container .header {
+  font-size: 24px;
+  font-family: "Open Sans", sans-serif;
+}
+.Login.base-container .content {
+  display: flex;
+  flex-direction: column;
+}
+.Login.base-container .content .image {
+  width: 21em;
+}
+.Login.base-container .content .image img {
+  width: 100%;
+  height: 100%;
+}
+.Login.base-container .content .Form {
+  margin-top: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Login.base-container.register .content .Form {
+  margin-top: 0;
+}
+.Login.base-container .content .Form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+}
+.Login.base-container .content .Form .form-group label {
+  font-size: 20px;
+}
+.Login.base-container .content .Form .form-group input {
+  margin-top: 6px;
+  min-width: 18em;
+  height: 37px;
+  padding: 0px 10px;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  background-color: #f3f3f3;
+  border: 0;
+  border-radius: 4px;
+  margin-bottom: 31px;
+  transition: all 250ms ease-in-out;
+}
+
+.Login.base-container.register .content .Form .form-group input {
+  margin-bottom: 10px;
+}
+
+.Login.base-container .content .Form .form-group input:focus {
+  outline: none;
+  box-shadow: 0px 0px 12px 0.8px #3474db b2;
+}
+.Login.base-container .footer {
+  margin-top: 3em;
+}
+
+.Login.base-container.register .footer {
+  margin-top: 0em;
+  margin-bottom: 0.2em;
+}
