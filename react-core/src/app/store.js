@@ -4,6 +4,7 @@ import assignmentReducer from "../components/assignment/assignmentSlice";
 import examTimeReducer from "../components/examTime/ExamTimeSlice";
 import bookCreateReducer from "../components/desk/BookCreate/BookCreateSlice";
 import bookDisplayReducer from "../components/desk/BookCreate/BookDisplaySlice";
+import userReducer from "../components/login/loginSlice";
 
 export const store = configureStore({
   middleware: getDefaultMiddleware({
@@ -14,5 +15,6 @@ export const store = configureStore({
     examTime: examTimeReducer,
     books: bookCreateReducer,
     booksDisplay: bookDisplayReducer,
+    user: userReducer,
   },
 });
