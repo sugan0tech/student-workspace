@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL:
-    "https://cors-anywhere.herokuapp.com/http://restapi.adequateshop.com/api",
+  baseURL: "http://localhost:5000",
   headers: { "Access-Control-Allow-Origin": "*" },
 });
 
