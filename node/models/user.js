@@ -21,18 +21,6 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    age: {
-        type: Number,
-        min: 18,
-        max: 100
-    },
-    gender: {
-        type: String,
-    },
-    dOB: {
-        type: String,
-        required: true
-    },
     createdAt: {
         type: Date,
         default: new Date,
