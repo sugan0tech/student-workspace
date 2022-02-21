@@ -15,9 +15,9 @@ router
     .get((req, res) => {
         console.log(chalk.yellow.bold.inverse("\n    home get request    \n"));
         console.log(req.cookies);
-        if (token.verify(req.cookies.token, req.cookies.mail)) {
+        if (token.verify(req.cookies.token, req.cookies.email)) {
             console.log(chalk.green.bold("\n\tVerified token, authorized\n"));
-            res.send(`Welcome ${req.cookies.mail}`);
+            res.send(`Welcome ${req.cookies.email}`);
         } else {
             console.log(chalk.red.bold("\n\tFailed token, Redirected!!!\n"), chalk.red.bold.inverse("\tlocation: ./routes/home.js\n"));
             res.redirect(301, "/login");

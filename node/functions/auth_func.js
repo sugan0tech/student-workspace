@@ -4,7 +4,7 @@ const chalk = require("chalk");
 
 async function push(data) {
     try {
-        const valid = await user.exists({ $and: [{ mail: data.mail }] });
+        const valid = await user.exists({ $and: [{ email: data.email }] });
         console.log(data);
         if (valid == null) {
             data.password = hash(data.password);
@@ -22,7 +22,7 @@ async function push(data) {
 async function check(userMail, userPassword) {
 
     try {
-        const valid = await user.exists({ $and: [{ mail: userMail }, { password: hash(userPassword) }] });
+        const valid = await user.exists({ $and: [{ email: userMail }, { password: hash(userPassword) }] });
         if (valid == null) {
             return false;
         }
@@ -37,7 +37,7 @@ async function update(data) {
     try {
         data.password = hash(data.password);
         data.changedAt = new Date;
-        const updateUsr = await user.updateOne({ mail: data.mail }, data);
+        const updateUsr = await user.updateOne({ email: data.email }, data);
         console.log(updateUsr);
         console.log(chalk.green.bold("\n\t User updated successfully"));
 
@@ -51,7 +51,7 @@ async function update(data) {
 async function del(userMail, userPassword) {
 
     try {
-        const valid = await user.deleteOne({ $and: [{ mail: userMail }, { password: hash(userPassword) }] });
+        const valid = await user.deleteOne({ $and: [{ email: userMail }, { password: hash(userPassword) }] });
         if (valid == null) {
             return false;
         }

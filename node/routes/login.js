@@ -25,11 +25,11 @@ router
         console.log(chalk.yellow.bold.inverse("\n    login post request    \n"));
         console.log(chalk.green("request api : "), req.body);
         console.log(chalk.green("request cookie :"), req.cookies);
-        const verifiedStatus = tok.verify(req.cookies.token, req.cookies.mail);
+        const verifiedStatus = tok.verify(req.cookies.token, req.cookies.email);
         console.log(chalk.bold.green.inverse("token verified status :"), verifiedStatus);
         if (verifiedStatus) {
             const data = tok.getPayload(req.cookies.token);
-            func.check(data.mail, data.password).then(
+            func.check(data.email, data.password).then(
                 (resolve) => {
                     if (resolve) {
                         console.log(chalk.green.bold("\n\ttoken cross referenced with db\n"))
@@ -44,15 +44,15 @@ router
                 }
             );
         } else {
-            func.check(req.body.mail, req.body.password).then(
+            func.check(req.body.email, req.body.password).then(
                 (value) => {
                     if (value == false) {
                         console.log(chalk.bold.red("\n\t user not found \n"));
                         res.send("user not found");
                     } else {
                         console.log(chalk.bold.green.inverse("\n\t user found \n"));
-                        res.cookie("token", tok.create({ mail: req.body.mail, password: req.body.password }), { maxAge: 30 * 24 * 60 * 60 * 1000 });
-                        res.cookie("mail", req.body.mail, { maxAge: 30 * 24 * 60 * 60 * 1000 });
+                        res.cookie("token", tok.create({ email: req.body.email, password: req.body.password }), { maxAge: 30 * 24 * 60 * 60 * 1000 });
+                        res.cookie("email", req.body.email, { maxAge: 30 * 24 * 60 * 60 * 1000 });
                         // need to add user name as a cookie fetched from db
                         res.send("user found");
                     }

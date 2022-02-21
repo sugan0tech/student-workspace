@@ -26,10 +26,10 @@ router
         console.log(chalk.yellow.bold.inverse("\n    update post request    \n"));
         console.log(chalk.green("request api : "), req.body);
         console.log(chalk.green("request cookie :"), req.cookies);
-        const verifiedStatus = tok.verify(req.cookies.token, req.cookies.mail);
+        const verifiedStatus = tok.verify(req.cookies.token, req.cookies.email);
         console.log(chalk.bold.green.inverse("token verified status :"), verifiedStatus);
         if (verifiedStatus) {
-            check(req.body.mail, req.body.password).then(
+            check(req.body.email, req.body.password).then(
                 (value) => {
                     if (value) {
                         update(req.body);

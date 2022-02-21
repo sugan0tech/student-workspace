@@ -8,12 +8,12 @@ function create(payload) {
     return jwt.sign(payload, process.env.MASTER_KEY);
 }
 
-function verify(token, mail) {
+function verify(token, email) {
     try {
         const tst = jwt.verify(token, process.env.MASTER_KEY);
         // tst have {mail, password }
         console.log("tst :", tst);
-        return tst.mail == mail;
+        return tst.email == email;
     } catch (error) {
 
     }

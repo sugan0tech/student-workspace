@@ -14,13 +14,13 @@ router
     .route("/")
     .post((req, res) => {
         console.log(chalk.yellow.bold.inverse("\n    Delete post request    \n"));
-        func.check(req.body.mail, req.body.password).then(
+        func.check(req.body.email, req.body.password).then(
             (resolve) => {
                 if (resolve) {
-                    func.del(req.body.mail, req.body.password).then(
+                    func.del(req.body.email, req.body.password).then(
                         (resolve) => {
                             if (resolve) {
-                                console.log(chalk.green.bold(`\n\tsuccessfully deleted user ${req.body.mail}\n`));
+                                console.log(chalk.green.bold(`\n\tsuccessfully deleted user ${req.body.email}\n`));
                                 res.send("successfully deleted");
                             } else {
                                 console.log("not deleted");
