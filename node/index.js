@@ -8,9 +8,13 @@ const update = require("./routes/update");
 const del = require("./routes/delete");
 const chalk = require("chalk");
 const mongoose = require("./db");
+const cors = require("cors");
 console.log(chalk.yellow("\n-----------------------------------------------------"));
 console.log(chalk.yellow("-----------------------------------------------------\n"));
 
+app.use(cors({
+    origin: "http://localhost:3000"
+}));
 // middlewares
 //routes
 app
