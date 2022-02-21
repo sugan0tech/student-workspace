@@ -1,19 +1,35 @@
 import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
+import "./PdfDisplay.css";
+import { Button } from "react-bootstrap";
 
 const PdfDisplay = ({ pdf }) => {
-  const [numPages, setNumPages] = useState(null);
+  const [numPages, setNumPages] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
-  const handleNextButton = () => {
-    console.log("next button clicked");
+
+  const numberOfPages = (pdf) => {
+    setNumPages(pdf?.numPages);
+  };
+  const handleNextButtonLeft = () => {
+    if (pageNumber >= numPages) return;
     setPageNumber(pageNumber + 1);
   };
-  console.log(pdf);
+  const handleNextButtonRight = () => {
+    if (pageNumber == 1) return;
+    setPageNumber(pageNumber - +1);
+  };
   return (
-    <div>
-      <Document className="pdf" file={pdf}>
-        <Page size="C10" pageNumber={1} />
-      </Document>
+    <div className="PdfDisplay">
+      <div className="pdf">
+        <Document onLoadSuccess={numberOfPages} file={pdf}>
+          <Page size="A4" pageNumber={pageNumber} />
+        </Document>
+      </div>
+      <div className="Button">
+        <Button onClick={handleNextButtonRight}>Left</Button>
+        <Button onClick={handleNextButtonLeft}>Right</Button>
+      </div>
+      <hr />
     </div>
   );
 };

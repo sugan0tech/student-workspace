@@ -40,11 +40,11 @@ const BookDisplay = () => {
       </div>
       <div className="images">
         <h3>Images</h3>
-        <>
+        <div className="images-grid">
           {images.map((image) => {
             return <ImageDisplay image={image} />;
           })}
-        </>
+        </div>
       </div>
     </div>
   );
