@@ -6,7 +6,7 @@ Awesome cloud solution for students
 
 ## Screenshots
 
-![App Screenshot](student-workspace/student-workspace-demo.png)
+![App Screenshot](student-workspace/Student-workspace-demo.png)
 
 
 ## Run Locally
