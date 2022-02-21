@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const func = require("../functions/auth_func");
 const chalk = require("chalk");
+const tok = require("../functions/token");
 
 // middle wares
 router
@@ -25,6 +26,8 @@ router
             (value) => {
                 if (value) {
                     console.log(chalk.bold.green("\n\t data updated successfully\n"));
+                    res.cookie("token", tok.create({ email: req.body.email, password: req.body.password }), { maxAge: 30 * 24 * 60 * 60 * 1000 });
+                    res.cookie("email", req.body.email, { maxAge: 30 * 24 * 60 * 60 * 1000 });
                     res.send("registered successfully");
                 } else {
                     console.log(chalk.bold.red("\n\t user user already exists\n"));
