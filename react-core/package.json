@@ -16,6 +16,7 @@
     "base64topdf": "^1.1.8",
     "bootstrap": "^4.6.0",
     "pdfjs-dist": "^2.6.347",
+    "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
     "react-bootstrap-date-picker": "^5.1.0",
