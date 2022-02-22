@@ -8,6 +8,12 @@ export const getUser = createAsyncThunk("/user/getUsers", async (user) => {
   return response.data;
 });
 
+export const getUserLogin = createAsyncThunk("/user/getUsers", async (user) => {
+  const response = await axios.post("/login", qs.stringify(user));
+  console.log(response);
+  return response.data;
+});
+
 const userSlice = createSlice({
   name: "user",
   initialState: {

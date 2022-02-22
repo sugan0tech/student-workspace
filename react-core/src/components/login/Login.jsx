@@ -2,15 +2,22 @@ import React from 'react'
 import loginImg from "../../media/login.svg"
 import "./LoginStyle.css"
 import { useDispatch } from 'react-redux'
-import { getUser} from "./loginSlice"
+import { getUser, getUserLogin} from "./loginSlice"
+import { useEffect } from 'react'
 
 const Login = (props) => {
   const dispatch = useDispatch()
-  dispatch(getUser({
-    name: "hari",
-    email: "harikrishna03092@gmail.com",
-    password: 123445
-  }))
+  useEffect(()=> {
+    dispatch(getUserLogin({
+      email: "harikrishna03092@gmail.com",
+      password: 123445
+    }))
+  })
+  // dispatch(getUser({
+  //   name: "hari",
+  //   email: "harikrishna03092@gmail.com",
+  //   password: 123445
+  // }))
   return (
     <div className="base-container Login" ref={props.containerRef}>
     <div className="header">Login</div>
