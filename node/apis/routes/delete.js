@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const chalk = require('chalk');
-const func = require("../functions/auth_func");
-const tok = require("../functions/token");
+const func = require("../../functions/auth_func");
+const tok = require("../../functions/token");
 const cookieParser = require("cookie-parser");
 
 router

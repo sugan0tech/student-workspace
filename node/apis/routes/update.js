@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const chalk = require("chalk");
-const tok = require("../functions/token");
+const tok = require("../../functions/token");
 const cookieParser = require("cookie-parser");
-const { check, update } = require("../functions/auth_func");
+const { check, update } = require("../../functions/auth_func");
 
 //middle wares
 router

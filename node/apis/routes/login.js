@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const func = require("../functions/auth_func");
+const func = require("../../functions/auth_func");
 const chalk = require("chalk");
 const cookieParser = require("cookie-parser");
-const tok = require("../functions/token");
+const tok = require("../../functions/token");
 require('dotenv').config()
 
 router

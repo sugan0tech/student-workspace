@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const token = require("../functions/token");
+const token = require("../../functions/token");
 const chalk = require("chalk");
 const cookieParser = require("cookie-parser");
 
