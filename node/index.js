@@ -6,6 +6,7 @@ const login = require("./apis/routes/login");
 const logout = require("./apis/routes/logout");
 const update = require("./apis/routes/update");
 const del = require("./apis/routes/delete");
+const getInfo = require("./apis/get-assignment");
 const chalk = require("chalk");
 const mongoose = require("./db");
 const cors = require("cors");
@@ -23,7 +24,8 @@ app
     .use("/login", login)
     .use("/logout", logout)
     .use("/update", update)
-    .use("/delete", del);
+    .use("/delete", del)
+    .use("/api/getAssignments", getInfo);
 
 // default page
 app.get("/", (req, res) => {
