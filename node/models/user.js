@@ -30,7 +30,11 @@ const userSchema = mongoose.Schema({
         type: Date,
         default: new Date,
         immutable: false,
-    }
+    },
+    bookList: [mongo.schemaTypes.ObjectId],
+    assignmentsList: [mongo.schemaTypes.ObjectId],
+    examTimeTable: [{ time: Date, sub: String, title: String }]
+
 })
 
 module.exports = mongoose.model("User", userSchema)
