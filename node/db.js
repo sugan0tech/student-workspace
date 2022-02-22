@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const url = "kmongodb://localhost:27017/test";
+require('dotenv').config()
+const url = process.env.DB_URL;
 const chalk = require("chalk");
 mongoose.connect(url, () => {
     console.log(chalk.green.bold.inverse("Connected to the database"));
