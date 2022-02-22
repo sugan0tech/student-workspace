@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+const mongo = require("mongoose");
 const validateEmail = function(email) {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return re.test(email)
 };
-const userSchema = mongoose.Schema({
+const userSchema = mongo.Schema({
     name: {
         type: String,
         required: true,
@@ -31,12 +31,13 @@ const userSchema = mongoose.Schema({
         default: new Date,
         immutable: false,
     },
-    bookList: [mongo.schemaTypes.ObjectId],
-    assignmentsList: [mongo.schemaTypes.ObjectId],
+    bookList: [mongo.SchemaTypes.ObjectId],
+
+    assignmentsList: [mongo.SchemaTypes.ObjectId],
     examTime: [
         { id: String, title: String, subs: [{ subject: String, date: Date }] }
     ]
 
 })
 
-module.exports = mongoose.model("User", userSchema)
+module.exports = mongo.model("User", userSchema)
