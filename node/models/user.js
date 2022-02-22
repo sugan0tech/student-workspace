@@ -33,7 +33,9 @@ const userSchema = mongoose.Schema({
     },
     bookList: [mongo.schemaTypes.ObjectId],
     assignmentsList: [mongo.schemaTypes.ObjectId],
-    examTimeTable: [{ time: Date, sub: String, title: String }]
+    examTime: [
+        { id: String, subs: [{ subject: String, date: Date }] }
+    ]
 
 })
 
