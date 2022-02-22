@@ -24,14 +24,17 @@ router
         console.log(chalk.green("request api : "), req.body);
         func.push(req.body).then(
             (value) => {
-                if (value) {
+                if (value == true) {
                     console.log(chalk.bold.green("\n\t data updated successfully\n"));
                     res.cookie("token", tok.create({ email: req.body.email, password: req.body.password }), { maxAge: 30 * 24 * 60 * 60 * 1000 });
                     res.cookie("email", req.body.email, { maxAge: 30 * 24 * 60 * 60 * 1000 });
                     res.send("registered successfully");
-                } else {
+                } else if (value == false) {
                     console.log(chalk.bold.red("\n\t user user already exists\n"));
                     res.send("user already exists ");
+                } else if (value == null) {
+                    console.log(chalk.bold.red("\n\tError !!! in registration \n"), chalk.bold.red.inverse("\tlocation: ./routes/register.js\n"));;
+                    res.send("Error occurred in connection");
                 }
             },
             (e) => {

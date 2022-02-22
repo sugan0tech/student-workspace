@@ -12,11 +12,12 @@ async function push(data) {
             await newUser.save();
             return true;
         }
+        return false;
     } catch (e) {
         console.log(e);
         console.log(chalk.bold.red("\n\tError !!! in auth function (push)\n"), chalk.bold.red.inverse("\tlocation: ./functions/auth_function.js\n"));;
     }
-    return false;
+    return null;
 }
 
 async function check(userMail, userPassword) {
@@ -26,11 +27,12 @@ async function check(userMail, userPassword) {
         if (valid == null) {
             return false;
         }
+        return true;
     } catch (e) {
         console.log(e);
         console.log(chalk.bold.red("\n\tError !!! in auth function (check)\n"), chalk.bold.red.inverse("\tlocation: ./functions/auth_function.js\n"));;
     }
-    return true;
+    return null;
 }
 
 async function update(data) {
@@ -55,11 +57,12 @@ async function del(userMail, userPassword) {
         if (valid == null) {
             return false;
         }
+        return true;
     } catch (e) {
         console.log(e);
         console.log(chalk.bold.red("\n\tError !!! in auth function (check)\n"), chalk.bold.red.inverse("\tlocation: ./functions/auth_function.js\n"));;
     }
-    return true;
+    return null;
 }
 
 module.exports = { push, check, update, del }
