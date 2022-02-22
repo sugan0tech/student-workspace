@@ -33,8 +33,7 @@ router
                     console.log(chalk.bold.red("\n\t user user already exists\n"));
                     res.send("user already exists ");
                 } else if (value == null) {
-                    console.log(chalk.bold.red("\n\tError !!! in registration \n"), chalk.bold.red.inverse("\tlocation: ./routes/register.js\n"));;
-                    res.send("Error occurred in connection");
+                    res.send("Error occurred in connection, with db");
                 }
             },
             (e) => {
