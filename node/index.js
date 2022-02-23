@@ -8,6 +8,7 @@ const update = require("./apis/routes/update");
 const del = require("./apis/routes/delete");
 const getAssignments = require("./apis/get-assignments");
 const getBooks = require("./apis/get-books");
+const getExams = require("./apis/get-exams");
 const chalk = require("chalk");
 const mongoose = require("./db");
 const cors = require("cors");
@@ -27,7 +28,8 @@ app
     .use("/update", update)
     .use("/delete", del)
     .use("/api/getAssignments", getAssignments)
-    .use("/api/getBooks", getBooks);
+    .use("/api/getBooks", getBooks)
+    .use("/api/getExams", getExams);
 
 // default page
 app.get("/", (req, res) => {
