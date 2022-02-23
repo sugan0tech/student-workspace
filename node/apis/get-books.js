@@ -34,6 +34,8 @@ route
                     console.log(chalk.red.bold("\n\terror in get-books\n"), chalk.red.bold.inverse("\tlocation: ./api/get-books\n"));
                 }
             );
+        } else {
+            res.status(401).send("invalid access");
         }
     })
 

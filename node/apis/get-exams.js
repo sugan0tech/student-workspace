@@ -34,6 +34,8 @@ route
                     console.log(chalk.red.bold("\n\terror in get-exams\n"), chalk.red.bold.inverse("\tlocation: ./api/get-exams\n"));
                 }
             );
+        } else {
+            res.status(401).send("invalid access");
         }
     })
 
