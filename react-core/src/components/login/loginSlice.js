@@ -11,6 +11,7 @@ export const getUser = createAsyncThunk("/user/getUsers", async (user) => {
 export const getUserLogin = createAsyncThunk("/user/getUsers", async (user) => {
   const response = await axios.post("/login", qs.stringify(user));
   console.log(response);
+  console.log("response over: ");
   return response.data;
 });
 
