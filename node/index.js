@@ -20,15 +20,15 @@ console.log(
 );
 const cookieParser = require("cookie-parser");
 
-app.use(cookieParser());
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-  })
-);
 // middlewares
 //routes
 app
+  .use(
+    cors({
+      credentials: true,
+      origin: "http://localhost:3000",
+    })
+  )
   .use("/home", home)
   .use("/register", register)
   .use("/login", login)
