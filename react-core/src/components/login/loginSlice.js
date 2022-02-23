@@ -22,15 +22,9 @@ const userSlice = createSlice({
     status: "",
   },
   extraReducers: {
-    [getUser.pending]: (state, action) => {
-      state.status = "pending";
-    },
     [getUser.fulfilled]: (state, { payload }) => {
       state.user = payload.data;
       state.status = "sucess";
-    },
-    [getUser.rejected]: (state, payload) => {
-      state.status = "failed";
     },
   },
 });

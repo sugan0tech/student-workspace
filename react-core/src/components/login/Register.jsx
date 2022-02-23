@@ -1,8 +1,19 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import loginImg from "../../media/login.svg"
 import "./LoginStyle.css"
+import { getUser } from './loginSlice'
 
 const Register = (props) => {
+  const dispatch = useDispatch()
+  const handleRegister = (e)=> {
+    e.preventDefault();
+    dispatch(getUser({
+      name: "hari2",
+      email: "harikrishna@gmail.com",
+      password: 123445
+    }))
+  }
   return (
     <div className="base-container register Login" ref={props.containerRef}>
         <div className="header">Register</div>
@@ -26,7 +37,7 @@ const Register = (props) => {
           </div>
         </div>
         <div className="footer">
-          <button type="button" className="btn">
+          <button type="button" className="btn" onClick={handleRegister}>
             Register
           </button>
         </div>

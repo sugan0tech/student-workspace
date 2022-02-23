@@ -8,11 +8,7 @@ import { useEffect } from 'react'
 const Login = (props) => {
   const dispatch = useDispatch()
   useEffect(()=> {
-    // dispatch(getUser({
-    //   name: "hari",
-    //   email: "harikrishna03092@gmail.com",
-    //   password: 123445
-    // }))
+  
 
     dispatch(getUserLogin({
       email: "harikrishna03092@gmail.com",

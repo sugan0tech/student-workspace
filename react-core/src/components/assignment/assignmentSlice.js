@@ -1,4 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "../../axios";
+export const getAssignments = createAsyncThunk(
+  "/user/getUsers",
+  async (assignments) => {
+    const response = await axios.post("/api/getAssignments", assignments);
+    console.log(response);
+    return response.data;
+  }
+);
 
 const assignmentSlice = createSlice({
   name: "assignments",
@@ -29,6 +38,11 @@ const assignmentSlice = createSlice({
       });
 
       state.splice(index, 1);
+    },
+  },
+  extraReducers: {
+    [getAssignments.fulfilled]: (state, { payload }) => {
+      state = payload.data;
     },
   },
 });

@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CreateAssignment from "./CreateAssignment";
 import AssignmentList from "./AssignmentList";
 import AssignmentListHeader from "./AssignmentListHeader";
-import { useSelector } from "react-redux";
-import { assignmentSelector } from "./assignmentSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { assignmentSelector, getAssignments } from "./assignmentSlice";
 import "./Assignment.css";
 const Assignment = () => {
   const assignments = useSelector(assignmentSelector);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAssignments([]));
+  });
 
   return (
     <div className="Assignment">
