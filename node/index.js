@@ -29,25 +29,15 @@ app.use(
 // middlewares
 //routes
 app
-<<<<<<< HEAD
   .use("/home", home)
   .use("/register", register)
   .use("/login", login)
   .use("/logout", logout)
   .use("/update", update)
   .use("/delete", del)
-  .use("/api/getAssignments", getInfo);
-=======
-    .use("/home", home)
-    .use("/register", register)
-    .use("/login", login)
-    .use("/logout", logout)
-    .use("/update", update)
-    .use("/delete", del)
-    .use("/api/getAssignments", getAssignments)
-    .use("/api/getBooks", getBooks)
-    .use("/api/getExams", getExams);
->>>>>>> 6a6010639832e9b1b8cd949e5024a2db5f880f4b
+  .use("/api/getAssignments", getAssignments)
+  .use("/api/getBooks", getBooks)
+  .use("/api/getExams", getExams);
 
 // default page
 app.get("/", (req, res) => {
