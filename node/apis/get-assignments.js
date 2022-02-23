@@ -25,7 +25,7 @@ route
                     if (resolve != null) {
                         console.log(chalk.green.bold("\n\tuser info found\n"))
                         console.log(resolve);
-                        res.send(resolve.assignmentsList);
+                        res.send(resolve.assignments);
                     } else {
                         res.send("user infor can't be fetched");
                     }

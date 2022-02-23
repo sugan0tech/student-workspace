@@ -6,7 +6,8 @@ const login = require("./apis/routes/login");
 const logout = require("./apis/routes/logout");
 const update = require("./apis/routes/update");
 const del = require("./apis/routes/delete");
-const getInfo = require("./apis/get-assignment");
+const getAssignments = require("./apis/get-assignments");
+const getBooks = require("./apis/get-books");
 const chalk = require("chalk");
 const mongoose = require("./db");
 const cors = require("cors");
@@ -25,7 +26,8 @@ app
     .use("/logout", logout)
     .use("/update", update)
     .use("/delete", del)
-    .use("/api/getAssignments", getInfo);
+    .use("/api/getAssignments", getAssignments)
+    .use("/api/getBooks", getBooks);
 
 // default page
 app.get("/", (req, res) => {
