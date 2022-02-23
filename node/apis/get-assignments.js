@@ -34,7 +34,10 @@ route
                     console.log(chalk.red.bold("\n\terror in get-assignments\n"), chalk.red.bold.inverse("\tlocation: ./api/get-assignments\n"));
                 }
             );
+        } else {
+            res.status(401).send("invalid access");
         }
+
     })
 
 module.exports = route
