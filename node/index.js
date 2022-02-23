@@ -16,6 +16,7 @@ console.log(chalk.yellow("\n----------------------------------------------------
 console.log(chalk.yellow("-----------------------------------------------------\n"));
 
 app.use(cors({
+    credentials: true,
     origin: "http://localhost:3000"
 }));
 // middlewares
