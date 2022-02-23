@@ -6,7 +6,9 @@ const login = require("./apis/routes/login");
 const logout = require("./apis/routes/logout");
 const update = require("./apis/routes/update");
 const del = require("./apis/routes/delete");
-const getInfo = require("./apis/get-assignment");
+const getAssignments = require("./apis/get-assignments");
+const getBooks = require("./apis/get-books");
+const getExams = require("./apis/get-exams");
 const chalk = require("chalk");
 const mongoose = require("./db");
 const cors = require("cors");
@@ -27,6 +29,7 @@ app.use(
 // middlewares
 //routes
 app
+<<<<<<< HEAD
   .use("/home", home)
   .use("/register", register)
   .use("/login", login)
@@ -34,6 +37,17 @@ app
   .use("/update", update)
   .use("/delete", del)
   .use("/api/getAssignments", getInfo);
+=======
+    .use("/home", home)
+    .use("/register", register)
+    .use("/login", login)
+    .use("/logout", logout)
+    .use("/update", update)
+    .use("/delete", del)
+    .use("/api/getAssignments", getAssignments)
+    .use("/api/getBooks", getBooks)
+    .use("/api/getExams", getExams);
+>>>>>>> 6a6010639832e9b1b8cd949e5024a2db5f880f4b
 
 // default page
 app.get("/", (req, res) => {

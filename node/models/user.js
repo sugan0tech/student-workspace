@@ -31,9 +31,9 @@ const userSchema = mongo.Schema({
         default: new Date,
         immutable: false,
     },
-    bookList: [mongo.SchemaTypes.ObjectId],
+    books: [mongo.SchemaTypes.ObjectId],
 
-    assignmentsList: [mongo.SchemaTypes.ObjectId],
+    assignments: [mongo.SchemaTypes.ObjectId],
     examTime: [
         { id: String, title: String, subs: [{ subject: String, date: Date }] }
     ]
