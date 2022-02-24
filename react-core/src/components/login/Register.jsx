@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useDispatch } from 'react-redux'
 import loginImg from "../../media/login.svg"
 import "./LoginStyle.css"
@@ -6,12 +6,16 @@ import { getUser } from './loginSlice'
 
 const Register = (props) => {
   const dispatch = useDispatch()
+  const [email,setEmail]=useState("")
+  const [password,setPassword]=useState("")
+  const [name,setName] = useState("")
   const handleRegister = (e)=> {
     e.preventDefault();
+    if(!email  || !password || !name) return
     dispatch(getUser({
-      name: "hari",
-      email: "harikrishna03092@gmail.com",
-      password: 123445
+      name,
+      email,
+      password
     }))
   }
   return (
@@ -24,15 +28,15 @@ const Register = (props) => {
           <div className="Form">
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" />
+              <input type="text" name="username" placeholder="username" onChange={(e)=>setName(e.target.value)}/>
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="text" name="email" placeholder="email" />
+              <input type="text" name="email" placeholder="email" onChange={(e)=>setEmail(e.target.value)}/>
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="text" name="password" placeholder="password" />
+              <input type="text" name="password" placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
             </div>
           </div>
         </div>

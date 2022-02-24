@@ -14,6 +14,11 @@ class App extends React.Component {
   componentDidMount() {
     //Add .right by default
     this.rightSide.classList.add("right");
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
   }
 
   changeState() {

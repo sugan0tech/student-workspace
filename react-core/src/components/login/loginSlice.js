@@ -26,8 +26,14 @@ const userSlice = createSlice({
     [getUser.fulfilled]: (state) => {
       state.exists = true;
     },
+    [getUser.rejected]: (state) => {
+      state.exists = false;
+    },
     [getUserLogin.fulfilled]: (state) => {
       state.exists = true;
+    },
+    [getUserLogin.rejected]: (state) => {
+      state.exists = false;
     },
   },
 });
