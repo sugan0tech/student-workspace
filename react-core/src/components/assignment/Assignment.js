@@ -9,8 +9,8 @@ const Assignment = () => {
   const assignments = useSelector(assignmentSelector);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAssignments([]));
-  });
+    dispatch(getAssignments(JSON.stringify([])));
+  }, []);
 
   return (
     <div className="Assignment">

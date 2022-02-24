@@ -7,15 +7,13 @@ import { useEffect } from 'react'
 
 const Login = (props) => {
   const dispatch = useDispatch()
-  useEffect(()=> {
   
-
+  const handleLogin = () => {
     dispatch(getUserLogin({
       email: "harikrishna03092@gmail.com",
       password: 123445
     }))
-  },[])
-
+  }
   return (
     <div className="base-container Login" ref={props.containerRef}>
     <div className="header">Login</div>
@@ -35,7 +33,7 @@ const Login = (props) => {
       </div>
     </div>
     <div className="footer">
-      <button type="button" className="btn">
+      <button type="button" className="btn" onClick={handleLogin}>
         Login
       </button>
     </div>

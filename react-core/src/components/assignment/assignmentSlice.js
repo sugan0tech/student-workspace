@@ -4,7 +4,9 @@ export const getAssignments = createAsyncThunk(
   "/user/getUsers",
   async (assignments) => {
     const response = await axios.post("/api/getAssignments", assignments);
+
     console.log(response);
+    console.log(response.data);
     return response.data;
   }
 );
@@ -42,7 +44,7 @@ const assignmentSlice = createSlice({
   },
   extraReducers: {
     [getAssignments.fulfilled]: (state, { payload }) => {
-      state = payload.data;
+      state = [...state, payload.data];
     },
   },
 });

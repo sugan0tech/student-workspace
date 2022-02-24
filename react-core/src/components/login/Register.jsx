@@ -9,8 +9,8 @@ const Register = (props) => {
   const handleRegister = (e)=> {
     e.preventDefault();
     dispatch(getUser({
-      name: "hari2",
-      email: "harikrishna@gmail.com",
+      name: "hari",
+      email: "harikrishna03092@gmail.com",
       password: 123445
     }))
   }

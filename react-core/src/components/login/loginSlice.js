@@ -10,21 +10,24 @@ export const getUser = createAsyncThunk("/user/getUsers", async (user) => {
 
 export const getUserLogin = createAsyncThunk("/user/getUsers", async (user) => {
   const response = await axios.post("/login", qs.stringify(user));
-  console.log(response);
-  console.log("response over: ");
-  return response.data;
+  // console.log(response);
+  // console.log("response over: ");
+  // const data = await response.json();
+
+  return response;
 });
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: {},
-    status: "",
+    exists: false,
   },
   extraReducers: {
-    [getUser.fulfilled]: (state, { payload }) => {
-      state.user = payload.data;
-      state.status = "sucess";
+    [getUser.fulfilled]: (state) => {
+      state.exists = true;
+    },
+    [getUserLogin.fulfilled]: (state) => {
+      state.exists = true;
     },
   },
 });
