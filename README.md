@@ -1,4 +1,5 @@
 
+
 # Student Workspace
 
 Awesome cloud solution for students
@@ -42,11 +43,19 @@ Install node(BackEnd) dependencies with npm
   npm install 
 ```
 
+.env file configuration for node  
+directory /node/.env
+```txt
+    MASTER_KEY="your_key"
+    PASSWORD="your_password"
+    DB_URL=""
+```
+
 run react-core(FrontEnd) by
 
 ```bash
   cd react-core
-  npm run
+  npm run start
 ```
 
 Run Server (Node) By
