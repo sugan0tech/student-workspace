@@ -68,8 +68,7 @@ async function del(userMail, userPassword) {
 
 async function getinfo(userMail, userPassword) {
     try {
-        const usr = await user.findOne({ email: userMail, password: userPassword });
-        return usr
+        return await user.findOne({ email: userMail, password: userPassword });
     } catch (e) {
         console.log(e);
         console.log(chalk.bold.red("\n\tError !!! in auth function (getinfo)\n"), chalk.bold.red.inverse("\tlocation: ./functions/auth_function.js\n"));;

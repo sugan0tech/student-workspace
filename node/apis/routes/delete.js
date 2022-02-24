@@ -18,8 +18,8 @@ router
             (resolve) => {
                 if (resolve) {
                     func.del(req.body.email, req.body.password).then(
-                        (resolve) => {
-                            if (resolve) {
+                        (resolve2) => {
+                            if (resolve2) {
                                 console.log(chalk.green.bold(`\n\tsuccessfully deleted user ${req.body.email}\n`));
                                 res.send("successfully deleted");
                             } else {
@@ -32,7 +32,7 @@ router
 
                     );
 
-                } else {
+                } else if (resolve == false) {
                     console.log("User not found")
                     res.send("user not found")
 
