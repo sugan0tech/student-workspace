@@ -31,12 +31,37 @@ const userSchema = mongo.Schema({
         default: new Date,
         immutable: false,
     },
-    books: [mongo.SchemaTypes.ObjectId],
+    books: {
+        type: [mongo.SchemaTypes.ObjectId],
+        default: [
+            new mongo.Types.ObjectId,
+            new mongo.Types.ObjectId
+        ]
+    },
 
-    assignments: [mongo.SchemaTypes.ObjectId],
-    examTime: [
-        { id: String, title: String, subs: [{ subject: String, date: Date }] }
-    ]
+    assignments: {
+        type: [mongo.SchemaTypes.ObjectId],
+        default: [
+            new mongo.Types.ObjectId,
+            new mongo.Types.ObjectId
+        ]
+    },
+    examTime: {
+        type: [
+            { id: String, title: String, subs: [{ subject: String, date: Date }] }
+        ],
+        default: {
+            id: 'test exam id',
+            title: 'sem exams',
+            subs: [
+                { subject: 'maths', date: new Date },
+                {
+                    subject: 'chemistry',
+                    date: new Date
+                }
+            ]
+        }
+    }
 
 })
 
