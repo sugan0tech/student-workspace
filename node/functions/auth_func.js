@@ -9,7 +9,8 @@ async function push(data) {
         if (valid == null) {
             data.password = hash(data.password);
             const newUser = new user(data);
-            await newUser.save();
+            const saveUser = await newUser.save();
+            console.log(saveUser);
             return true;
         }
         return false;
