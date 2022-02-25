@@ -21,6 +21,8 @@ router
                         (resolve2) => {
                             if (resolve2) {
                                 console.log(chalk.green.bold(`\n\tsuccessfully deleted user ${req.body.email}\n`));
+                                res.clearCookie("token");
+                                res.clearCookie("email");
                                 res.send("successfully deleted");
                             } else {
                                 console.log("not deleted");
