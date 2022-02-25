@@ -25,36 +25,23 @@ router
         console.log(chalk.yellow.bold.inverse("\n    login post request    \n"));
         console.log(chalk.green("request api : "), req.body);
         console.log(chalk.green("request cookie :"), req.cookies);
-        const verifiedStatus = tok.verify(req.cookies.token, req.cookies.email);
-        console.log(
-            chalk.bold.green.inverse("token verified status :"),
-            verifiedStatus
-        );
-        if (verifiedStatus) {
-            const data = tok.getPayload(req.cookies.token);
-            func.check(data.email, data.password).then(
-                (resolve) => {
-                    if (resolve) {
-                        console.log(
-                            chalk.green.bold("\n\ttoken cross referenced with db\n")
-                        );
-                        res.redirect(301, "/home");
-                    } else {
-                        res.send("account not found");
-                        console.log(
-                            chalk.red.bold(
-                                "\n\ttoken cross referenced with db failed\n\tprobably account deleted\n"
-                            )
-                        );
-                    }
-                },
-                (e) => {
-                    console.log(
-                        chalk.red.bold("\n\terror occurred in token db validation\n"),
-                        chalk.red.bold.inverse("\tlocation: ./routes/login\n")
-                    );
-                }
+        if (req.cookies.token != null) {
+            /*returns js object 
+            {
+                valid: bool,
+                payload: object
+            } */
+            const tokenVerificationData = tok.verify(req.cookies.token, req.cookies.email);
+            console.log(
+                chalk.bold.green.inverse("token verified status :"),
+                tokenVerificationData.valid
             );
+            if (tokenVerificationData.valid) {
+                res.redirect(301, "/home");
+            } else {
+                res.clearCookie("token");
+                res.redirect(301, "/login");
+            }
         } else {
             func.check(req.body.email, req.body.password).then(
                 (value) => {
@@ -73,7 +60,6 @@ router
                         res.cookie("email", req.body.email, {
                             maxAge: 30 * 24 * 60 * 60 * 1000,
                         });
-                        // need to add user name as a cookie fetched from db
                         res.send("user found");
                     }
                 },

@@ -8,16 +8,25 @@ function create(payload) {
     return jwt.sign(payload, process.env.MASTER_KEY);
 }
 
+// verify function 
+// returns 
 function verify(token, email) {
     try {
-        const tst = jwt.verify(token, process.env.MASTER_KEY);
+        const tokenPayload = jwt.verify(token, process.env.MASTER_KEY);
         // tst have {mail, password }
-        console.log("tst :", tst);
-        return tst.email == email;
-    } catch (error) {
+        return {
+            valid: tokenPayload.email == email,
+            payload: tokenPayload
+        };
+    } catch (e) {
+        console.log(e)
+        console.log(chalk.red.bold("\n\tError in verify func\n"), chalk.red.bold.inverse("\tlocation: ./functions/token\n"));
 
     }
-    return false;
+    return {
+        valid: false,
+        payload: null,
+    };
 
 }
 
