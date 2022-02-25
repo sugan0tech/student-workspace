@@ -1,5 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "../../axios";
 
+export const getExams = createAsyncThunk(
+  "/examTime/getBooks",
+  async (assignments) => {
+    const response = await axios.post("/api/getBooks", assignments);
+
+    return response.data;
+  }
+);
 const initialState = [];
 
 const ExamTimeSlice = createSlice({
@@ -22,6 +31,11 @@ const ExamTimeSlice = createSlice({
       });
 
       state.splice(index, 1);
+    },
+  },
+  extraReducers: {
+    [getExams.fulfilled]: (state, { payload }) => {
+      console.log(payload);
     },
   },
 });

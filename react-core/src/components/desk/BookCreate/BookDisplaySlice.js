@@ -1,5 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "../../../axios";
 
+export const getBookDisplay = createAsyncThunk(
+  "/bookDisplay/getBookDisplay",
+  async (data) => {
+    const response = await axios.post("/api/getBooks", data);
+
+    return response.data;
+  }
+);
 const initialState = [];
 
 const BookDisplaySlice = createSlice({
@@ -8,6 +17,11 @@ const BookDisplaySlice = createSlice({
   reducers: {
     addBookDisplay: (state, action) => {
       state.push(action.payload);
+    },
+  },
+  extraReducers: {
+    [getBookDisplay.fulfilled]: (state, { payload }) => {
+      console.log(payload);
     },
   },
 });

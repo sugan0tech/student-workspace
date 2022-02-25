@@ -16,7 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserLogin } from "./components/login/loginSlice";
 
 function App() {
-  const dispatch = useDispatch();
   const location = useLocation();
   const user = useSelector((state) => state.user);
   if (!user.exists) {
@@ -25,8 +24,6 @@ function App() {
         <Login />
       </div>
     );
-  } else {
-    dispatch(getUserLogin());
   }
 
   return (

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import loginImg from "../../media/login.svg"
 import "./LoginStyle.css"
@@ -9,6 +9,13 @@ const Register = (props) => {
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
   const [name,setName] = useState("")
+  useEffect(()=> {
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+  },[])
   const handleRegister = (e)=> {
     e.preventDefault();
     if(!email  || !password || !name) return

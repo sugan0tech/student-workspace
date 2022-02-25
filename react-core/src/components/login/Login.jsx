@@ -2,16 +2,25 @@ import React from 'react'
 import loginImg from "../../media/login.svg"
 import "./LoginStyle.css"
 import { useDispatch } from 'react-redux'
-import {  getUserLogin} from "./loginSlice"
+import {  getUserLogin,changeUserState} from "./loginSlice"
 import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 const Login = (props) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
+  useEffect(()=> {
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+    dispatch(changeUserState(false))
+  },[])
   const handleLogin = () => {
     if(!email || !password) return;
     dispatch(getUserLogin({

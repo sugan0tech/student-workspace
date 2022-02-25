@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ExamTimeCreate from "./ExamTimeCreate";
 import ExamTimeList from "./ExamTimeList";
 import "./ExamTime.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectExam } from "./ExamTimeSlice";
+import { getExams } from "./ExamTimeSlice";
 
 const ExamTime = () => {
+  const dispatch = useDispatch();
   const examTime = useSelector(selectExam);
+  useEffect(() => {
+    dispatch(getExams([]));
+  });
   console.log(examTime);
   return (
     <div>

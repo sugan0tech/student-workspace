@@ -22,6 +22,11 @@ const userSlice = createSlice({
   initialState: {
     exists: false,
   },
+  reducers: {
+    changeUserState: (state, { payload }) => {
+      state.exists = payload;
+    },
+  },
   extraReducers: {
     [getUser.fulfilled]: (state) => {
       state.exists = true;
@@ -37,5 +42,5 @@ const userSlice = createSlice({
     },
   },
 });
-
+export const { changeUserState } = userSlice.actions;
 export default userSlice.reducer;
