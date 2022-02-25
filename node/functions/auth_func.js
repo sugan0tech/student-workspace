@@ -82,10 +82,12 @@ async function del(userMail, userPassword) {
 
 async function getinfo(userMail, userPassword) {
     try {
-        return await user.findOne({
+        const val = await user.findOne({
             email: userMail,
-            password: userPassword
+            password: hash(userPassword)
         });
+        console.log("val", val);
+        return val
     } catch (e) {
         console.log(e);
         console.log(
@@ -135,4 +137,33 @@ async function addAssignment(objId, email) {
     return false;
 }
 
-module.exports = { push, check, update, del, getinfo, assignmentSave, addAssignment };
+async function getAssignment(objId) {
+    try {
+        return await assignment.findById(objId);
+    } catch (e) {
+        console.log(e);
+        console.log(
+            chalk.bold.red("\n\tError !!! in getAssignment function \n"),
+            chalk.bold.red.inverse("\tlocation: ./functions/auth_function.js\n")
+        );
+
+    }
+    return null;
+}
+async function getAssignments(objIdArr) {
+    try {
+        var objArr = []
+        for (const i of objIdArr) {
+            objArr.push(await getAssignment(i));
+        }
+        return objArr
+
+    } catch (e) {
+        console.log(e)
+        console.log(
+            chalk.bold.red("\n\tError !!! in getAssignments function \n"),
+            chalk.bold.red.inverse("\tlocation: ./functions/auth_function.js\n")
+        );
+    }
+}
+module.exports = { push, check, update, del, getinfo, assignmentSave, addAssignment, getAssignments };
