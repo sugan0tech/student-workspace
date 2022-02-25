@@ -8,4 +8,4 @@ const bookSchema = mongoose.Schema({
     pdf: [String]
 })
 
-module.exports("books", bookSchema);
+module.exports = mongoose.model("books", bookSchema);

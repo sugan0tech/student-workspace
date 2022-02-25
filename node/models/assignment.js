@@ -1,18 +1,21 @@
 const mongoose = require("mongoose");
 
-const assignmentSchema = mongoose.schema({
+const assignmentSchema = mongoose.Schema({
     subject: {
         type: String,
-        required: true
+        required: true,
+        default: "chemistry"
     },
     assignmentDetails: {
         type: String,
-        required: true
+        required: true,
+        default: "test"
+
     },
     date: {
         type: String,
         required: true,
-        default: new Date
+        default: new Date()
     },
     isCompleted: {
         type: Boolean,
@@ -20,4 +23,4 @@ const assignmentSchema = mongoose.schema({
     }
 })
 
-module.exports("assignment", assignmentSchema);
+module.exports = mongoose.model("assignment", assignmentSchema);
