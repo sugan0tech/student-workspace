@@ -14,8 +14,8 @@ router
     .post((req, res) => {
         console.log(chalk.yellow.bold.inverse("\n    Delete post request    \n"));
         func.del(req.body.email, req.body.password).then(
-            (resolve2) => {
-                if (resolve2) {
+            (resolve) => {
+                if (resolve) {
                     console.log(chalk.green.bold(`\n\tsuccessfully deleted user ${req.body.email}\n`));
                     res.clearCookie("token");
                     res.clearCookie("email");
@@ -25,7 +25,8 @@ router
                 }
             },
             (e) => {
-                console.log("error occurred");
+                chalk.bold.red("\n\tError !!! in deletions \n");
+                chalk.bold.red.inverse("\tlocation: ./apis/routes/delete\n")
             }
 
         );
