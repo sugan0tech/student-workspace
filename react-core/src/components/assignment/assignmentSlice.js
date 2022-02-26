@@ -44,7 +44,7 @@ const assignmentSlice = createSlice({
   },
   extraReducers: {
     [getAssignments.fulfilled]: (state, { payload }) => {
-      return payload;
+      console.log(payload);
     },
   },
 });

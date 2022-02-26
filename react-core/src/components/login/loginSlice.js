@@ -34,7 +34,11 @@ const userSlice = createSlice({
     [getUser.rejected]: (state) => {
       state.exists = false;
     },
-    [getUserLogin.fulfilled]: (state) => {
+    [getUserLogin.fulfilled]: (state, { payload }) => {
+      if (payload.data === "user not found") {
+        state.exists = false;
+        return;
+      }
       state.exists = true;
     },
     [getUserLogin.rejected]: (state) => {

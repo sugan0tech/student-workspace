@@ -27,7 +27,7 @@ route.route("/").post((req, res) => {
       (resolve) => {
         if (resolve != null) {
           console.log(chalk.green.bold("\n\tuser info found\n"));
-          console.log(resolve);
+          console.log(resolve.assignments);
           res.send(resolve.assignments);
         } else {
           res.send("user infor can't be fetched");
