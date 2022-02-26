@@ -166,4 +166,17 @@ async function getAssignments(objIdArr) {
         );
     }
 }
-module.exports = { push, check, update, del, getinfo, assignmentSave, addAssignment, getAssignments };
+
+async function delAssignment(objId) {
+    try {
+        return await assignment.deleteOne({ _id: objId })
+
+    } catch (e) {
+        console.log(e)
+        console.log(
+            chalk.bold.red("\n\tError !!! in delAssignment function \n"),
+            chalk.bold.red.inverse("\tlocation: ./functions/auth_function.js\n")
+        );
+    }
+}
+module.exports = { push, check, update, del, getinfo, assignmentSave, addAssignment, getAssignments, delAssignment };

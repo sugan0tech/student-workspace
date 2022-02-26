@@ -4,7 +4,6 @@ const chalk = require("chalk");
 const cookieParser = require("cookie-parser");
 const tok = require("../functions/token");
 const func = require("../functions/auth_func");
-const assignment = require("../models/assignment");
 /*request body object
     {
         assignment : {
@@ -48,14 +47,15 @@ router
                         func.addAssignment(resolve, tokenVerificationData.payload.email).then(
                             (resolve2) => {
                                 console.log("resolve2", resolve2);
+                                res.status(200).send("assignment added successfully");
                             },
                             (e) => {
                                 console.log(e);
+                                console.log(chalk.red.inverse.bold("error occured in assignment add "));
                             }
                         );
                     }
                 );
-                res.redirect(301, "/home");
             } else {
                 res.clearCookie("token");
                 res.redirect(301, "/login");
@@ -65,5 +65,11 @@ router
             res.redirect(301, "/login");
         }
     });
+
+router
+    .route("/updateStatus")
+    .post((req, res) => {
+
+    })
 
 module.exports = router;
