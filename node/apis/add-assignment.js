@@ -5,6 +5,16 @@ const cookieParser = require("cookie-parser");
 const tok = require("../functions/token");
 const func = require("../functions/auth_func");
 const assignment = require("../models/assignment");
+/*request body object
+    {
+        assignment : {
+        subject: 'chemistry',
+        assignmentDetails: 'test',
+        date: 'Fri Feb 25 2022 22:40:48 GMT+0530 (India Standard Time)',
+        isCompleted: false,
+        }
+    }
+     */
 
 router
     .use(cookieParser())
@@ -35,7 +45,7 @@ router
                 // updation of assignment on database
                 func.assignmentSave(req.body.assignment).then(
                     (resolve) => {
-                        func.addAssignment(resolve, req.cookies.email).then(
+                        func.addAssignment(resolve, tokenVerificationData.payload.email).then(
                             (resolve2) => {
                                 console.log("resolve2", resolve2);
                             },
