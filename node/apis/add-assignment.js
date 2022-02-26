@@ -5,6 +5,16 @@ const cookieParser = require("cookie-parser");
 const tok = require("../functions/token");
 const func = require("../functions/auth_func");
 const assignment = require("../models/assignment");
+/*request body object
+    {
+        assignment : {
+        subject: 'chemistry',
+        assignmentDetails: 'test',
+        date: 'Fri Feb 25 2022 22:40:48 GMT+0530 (India Standard Time)',
+        isCompleted: false,
+        }
+    }
+     */
 
 router
     .use(cookieParser())
@@ -20,32 +30,39 @@ router
         );
         console.log(chalk.green("request api : "), req.body);
         console.log(chalk.green("request cookie :"), req.cookies);
-        const verifiedStatus = tok.verify(req.cookies.token, req.cookies.email);
-        console.log(
-            chalk.bold.green.inverse("token verified status :"),
-            verifiedStatus
-        );
-        if (verifiedStatus) {
-            const data = tok.getPayload(req.cookies.token);
-            func.getinfo(data.email, data.password).then(
-                (resolve) => {
-                    if (resolve != null) {
-                        console.log(chalk.green.bold("\n\tuser info found\n"));
-                        console.log(resolve);
-                        res.send(resolve.assignments);
-                    } else {
-                        res.send("user infor can't be fetched");
-                    }
-                },
-                (e) => {
-                    console.log(
-                        chalk.red.bold("\n\terror in get-assignments\n"),
-                        chalk.red.bold.inverse("\tlocation: ./api/get-assignments\n")
-                    );
-                }
+        if (req.cookies.token != null) {
+            /*returns js object 
+            {
+                valid: bool,
+                payload: object
+            } */
+            const tokenVerificationData = tok.verify(req.cookies.token, req.cookies.email);
+            console.log(
+                chalk.bold.green.inverse("token verified status :"),
+                tokenVerificationData.valid
             );
+            if (tokenVerificationData.valid) {
+                // updation of assignment on database
+                func.assignmentSave(req.body.assignment).then(
+                    (resolve) => {
+                        func.addAssignment(resolve, tokenVerificationData.payload.email).then(
+                            (resolve2) => {
+                                console.log("resolve2", resolve2);
+                            },
+                            (e) => {
+                                console.log(e);
+                            }
+                        );
+                    }
+                );
+                res.redirect(301, "/home");
+            } else {
+                res.clearCookie("token");
+                res.redirect(301, "/login");
+            }
         } else {
-            res.status(401).send("invalid access");
+
+            res.redirect(301, "/login");
         }
     });
 

@@ -30,15 +30,4 @@ function verify(token, email) {
 
 }
 
-function getPayload(token) {
-    try {
-        return jwt.verify(token, process.env.MASTER_KEY);
-    } catch (e) {
-        console.log(e);
-        console.log(chalk.red.bold("\n\tError in Payload func\n"), chalk.red.bold.inverse("\tlocation: ./functions/token\n"));
-    }
-    return {};
-
-}
-
-module.exports = { create, verify, getPayload }
+module.exports = { create, verify }
