@@ -5,6 +5,19 @@ const chalk = require("chalk");
 const cookieParser = require("cookie-parser");
 const tok = require("../functions/token");
 
+/**
+ * request post with token cookie
+ * response objects, as array:
+ * [
+    {
+        "_id": obj id,
+        "subject": String,
+        "assignmentDetails": String,
+        "date": date`,
+        "isCompleted": bool,
+        "__v": 0
+    },]
+ */
 route
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
