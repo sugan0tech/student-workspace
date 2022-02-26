@@ -4,18 +4,15 @@ const assignmentSchema = mongoose.Schema({
     subject: {
         type: String,
         required: true,
-        default: "chemistry"
     },
     assignmentDetails: {
         type: String,
         required: true,
-        default: "test"
 
     },
     date: {
-        type: String,
+        type: Date,
         required: true,
-        default: new Date()
     },
     isCompleted: {
         type: Boolean,

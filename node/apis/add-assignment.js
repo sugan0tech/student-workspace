@@ -17,7 +17,7 @@ const func = require("../functions/auth_func");
 
 router
     .use(cookieParser())
-    .use(express.json())
+    // .use(express.json())
     .use(express.urlencoded({ extended: true }));
 
 router
@@ -42,6 +42,7 @@ router
             );
             if (tokenVerificationData.valid) {
                 // updation of assignment on database
+                console.log(req.body.assignment);
                 func.assignmentSave(req.body.assignment).then(
                     (resolve) => {
                         func.addAssignment(resolve, tokenVerificationData.payload.email).then(
@@ -51,7 +52,7 @@ router
                             },
                             (e) => {
                                 console.log(e);
-                                console.log(chalk.red.inverse.bold("error occured in assignment add "));
+                                console.log(chalk.red.inverse.bold("error occurred in assignment add "));
                             }
                         );
                     }
