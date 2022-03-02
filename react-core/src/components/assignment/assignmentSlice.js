@@ -6,18 +6,26 @@ export const getAssignments = createAsyncThunk(
     const response = await axios.post("/api/getAssignments", assignments);
 
     // console.log(response);
-    console.log(response.data);
+    console.log("get assignment", response.data);
     return response.data;
   }
 );
 
+export const addAssignment = createAsyncThunk(
+  "/assignments/addAssignment",
+  async (assignment) => {
+    const response = await axios.post("/api/addAssignment", assignment);
+    console.log(response);
+    return response.data;
+  }
+);
 const assignmentSlice = createSlice({
   name: "assignments",
   initialState: [],
   reducers: {
-    addAssignment: (state, action) => {
-      state.push(action.payload);
-    },
+    // addAssignment: (state, action) => {
+    //   state.push(action.payload);
+    // },
     changeIsComplete: (state, action) => {
       const id = action.payload;
       const index = state.map((assignment) => {
@@ -44,13 +52,17 @@ const assignmentSlice = createSlice({
   },
   extraReducers: {
     [getAssignments.fulfilled]: (state, { payload }) => {
+      // return payload.filter((ele) => (ele ? true : false));
+      console.log(payload);
+    },
+    [addAssignment.fulfilled]: (state, { payload }) => {
+      console.log("added assignment : ");
       console.log(payload);
     },
   },
 });
 
 export const assignmentSelector = (state) => state.assignments;
-export const { addAssignment, deleteAssignment, changeIsComplete } =
-  assignmentSlice.actions;
+export const { deleteAssignment, changeIsComplete } = assignmentSlice.actions;
 
 export default assignmentSlice.reducer;

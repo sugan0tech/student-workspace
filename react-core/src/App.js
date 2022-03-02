@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import "./App.css";
@@ -18,6 +18,10 @@ import { getUserLogin } from "./components/login/loginSlice";
 function App() {
   const location = useLocation();
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getUserLogin());
+  // });
   if (!user.exists) {
     return (
       <div>
