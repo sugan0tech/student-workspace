@@ -71,7 +71,12 @@ Run Server (Node) By
 - No worry about filling your computer with files
 - Cross platform
 
+## Backend Apis guide
 
+- Basic (/home, /login, /register, /logout, /delete)
+- Assignmets (/api/getAssignments, /api/addAssignmnet)
+- Books (/api/getBooks)
+- Exams (/api/getExams)
 
 ## Authors
 
