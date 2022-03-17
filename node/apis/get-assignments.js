@@ -13,63 +13,65 @@ const tok = require("../functions/token");
         "_id": obj id,
         "subject": String,
         "assignmentDetails": String,
-        "date": date`,
+        "date": date,
         "isCompleted": bool,
         "__v": 0
     },]
  */
 route
-  .use(express.json())
-  .use(express.urlencoded({ extended: true }))
-  .use(cookieParser());
+    .use(express.json())
+    .use(express.urlencoded({ extended: true }))
+    .use(cookieParser());
 
 route.route("/").post((req, res) => {
-  console.log(
-    chalk.yellow.bold.inverse("\n    get-assignment post request    \n")
-  );
-  console.log(chalk.green("request api : "), req.body);
-  console.log(chalk.green("request cookie :"), req.cookies);
-  if (req.cookies.token != null) {
-    /*returns js object 
-        {
-            valid: bool,
-            payload: object
-        } */
-    const tokenVerificationData = tok.verify(
-      req.cookies.token,
-      req.cookies.email
-    );
     console.log(
-      chalk.bold.green.inverse("token verified status :"),
-      tokenVerificationData.valid
+        chalk.yellow.bold.inverse("\n    get-assignment post request    \n")
     );
-    console.log(tokenVerificationData);
-    if (tokenVerificationData.valid) {
-      func
-        .getinfo(
-          tokenVerificationData.payload.email,
-          tokenVerificationData.payload.password
-        )
-        .then(
-          (resolve) => {
-            func.getAssignments(resolve.assignments).then(
-              (resolve) => {
-                res.send(resolve);
-              },
-              (e) => {
-                console.log(e);
-              }
-            );
-          },
-          (e) => {
-            console.log(e);
-          }
+    console.log(chalk.green("request api : "), req.body);
+    console.log(chalk.green("request cookie :"), req.cookies);
+    if (req.cookies.token != null) {
+        /*returns js object 
+            {
+                valid: bool,
+                payload: object
+            } */
+        const tokenVerificationData = tok.verify(
+            req.cookies.token,
+            req.cookies.email
         );
+        console.log(
+            chalk.bold.green.inverse("token verified status :"),
+            tokenVerificationData.valid
+        );
+        console.log(tokenVerificationData);
+        if (tokenVerificationData.valid) {
+            func
+                .getinfo(
+                    tokenVerificationData.payload.email,
+                    tokenVerificationData.payload.password
+                )
+                .then(
+                    (resolve) => {
+                        func.getAssignments(resolve.assignments).then(
+                            (resolve) => {
+                                res.send(resolve);
+                            },
+                            (e) => {
+                                console.log(e);
+                            }
+                        );
+                    },
+                    (e) => {
+                        console.log(e);
+                    }
+                );
+        } else {
+            res.clearCookie("token");
+            res.redirect(301, "/login");
+        }
     } else {
-      res.clearCookie("token");
-      res.redirect(301, "/login");
+        res.status(401).send("un authorised access");
     }
-  }
 });
 
 module.exports = route;

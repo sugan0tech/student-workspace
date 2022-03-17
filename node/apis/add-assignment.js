@@ -67,10 +67,5 @@ router
         }
     });
 
-router
-    .route("/updateStatus")
-    .post((req, res) => {
-
-    })
 
 module.exports = router;
