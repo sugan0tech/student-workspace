@@ -5,13 +5,13 @@
 Awesome cloud solution for students
 
 
-## Screenshots
+### Screenshots
 
 ![Student-workspace-demo](https://user-images.githubusercontent.com/53630264/154989961-e5aafd21-40be-4ef2-a033-934f5bfdd9e1.png)
 
 
 
-## Run Locally
+### Run Locally
 
 Clone the project
 
@@ -25,7 +25,7 @@ Go to the project directory
   cd student-workspace
 ```
 
-## Installation
+### Installation
 
 Install react-core(FrontEnd) dependencies with npm
 
@@ -65,7 +65,7 @@ Run Server (Node) By
   npm run student-workspace
 ```
 
-## Features
+### Features
 
 - Organisation of all study material in one place
 - No worry about filling your computer with files
@@ -73,9 +73,23 @@ Run Server (Node) By
 
 ## Backend Apis guide
 
-- Basic (/home, /login, /register, /logout, /delete)
-- Assignmets (/api/getAssignments, /api/addAssignmnet)
-- Books (/api/getBooks)
+### Assignmets 
+- /api/addAssignment 
+  ```js
+     // sample
+     body:{
+        assignment : {
+        subject: 'chemistry',
+        assignmentDetails: 'test',
+        date: 'Fri Feb 25 2022 22:40:48 GMT+0530 (India Standard Time)',
+        isCompleted: false,
+        }
+     }
+   ```
+- /api/getAssignmnets
+### Books
+- /api/getBooks
+### Exams
 - Exams (/api/getExams)
 
 ## Authors
