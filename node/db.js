@@ -4,10 +4,8 @@ const url = process.env.DB_URL;
 const chalk = require("chalk");
 mongo.connect(
     url,
-);
-mongo.connection.once("open", () => {
-
-    console.log(chalk.green.bold.inverse("Connected to the database"));
+).catch((reason) => {
+    console.log(reason);
+    console.log(chalk.red.inverse.bold("Error occurred in DB connection !!!"));
 });
-
 module.exports = mongo;

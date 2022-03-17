@@ -11,8 +11,13 @@ const addAssignment = require("./apis/add-assignment");
 const getBooks = require("./apis/get-books");
 const getExams = require("./apis/get-exams");
 const chalk = require("chalk");
-const mongoose = require("./db");
+const db = require("./db");
 const cors = require("cors");
+db.connection.once("open", () => {
+
+    console.log(chalk.green.bold.inverse("Connected to the database"));
+});
+
 console.log(
     chalk.yellow("\n-----------------------------------------------------")
 );
