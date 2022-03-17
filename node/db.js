@@ -1,17 +1,13 @@
-const mongoose = require("mongoose");
+const mongo = require("mongoose");
 require("dotenv").config();
 const url = process.env.DB_URL;
 const chalk = require("chalk");
-mongoose.connect(
-  url,
-  () => {
-    console.log(chalk.green.bold.inverse("Connected to the database"));
-  },
-  (err) => {
-    console.log(
-      chalk.red.bold.inverse("Not Connected to Database err!! occurred")
-    );
-  }
+mongo.connect(
+    url,
 );
+mongo.connection.once("open", () => {
 
-module.exports = mongoose;
+    console.log(chalk.green.bold.inverse("Connected to the database"));
+});
+
+module.exports = mongo;
