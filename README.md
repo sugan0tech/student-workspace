@@ -73,6 +73,17 @@ Run Server (Node) By
 
 ## Backend Apis guide
 
+### General Auth
+- Token validation is done via cookies (token : token)
+- format 
+  ```js
+  // jwt payload
+  payload : {
+  email: mail,
+  password: password,
+  }
+  ```
+
 ### Assignmets 
 - /api/addAssignment 
   ```js
