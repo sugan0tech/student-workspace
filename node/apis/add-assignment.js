@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const chalk = require("chalk");
 const cookieParser = require("cookie-parser");
-const tok = require("../functions/token");
+const token = require("../functions/token");
 const func = require("../functions/auth_func");
 /*request body object
     {
@@ -33,37 +33,42 @@ router
             /*returns js object 
             {
                 valid: bool,
-                payload: object
+                payload: object,
+                status: " "
             } */
-            const tokenVerificationData = tok.verify(req.cookies.token, req.cookies.email);
-            console.log(
-                chalk.bold.green.inverse("token verified status :"),
-                tokenVerificationData.valid
-            );
-            if (tokenVerificationData.valid) {
-                // updation of assignment on database
-                console.log(req.body.assignment);
-                func.assignmentSave(req.body.assignment).then(
-                    (resolve) => {
-                        func.addAssignment(resolve, tokenVerificationData.payload.email).then(
-                            (resolve2) => {
-                                console.log("resolve2", resolve2);
-                                res.status(200).send("assignment added successfully");
-                            },
-                            (e) => {
-                                console.log(e);
-                                console.log(chalk.red.inverse.bold("error occurred in assignment add "));
+            token.verify(req.cookies.token, req.cookies.email).then(
+                (tokenVerificationData) => {
+                    console.log(
+                        chalk.bold.green.inverse("token verified status :"),
+                        tokenVerificationData.valid
+                    );
+                    if (tokenVerificationData.valid) {
+                        // updation of assignment on database
+                        console.log(req.body.assignment);
+                        func.assignmentSave(req.body.assignment).then(
+                            (resolve) => {
+                                func.addAssignment(resolve, tokenVerificationData.payload.email).then(
+                                    (resolve2) => {
+                                        console.log("resolve2", resolve2);
+                                        res.status(200).send("assignment added successfully");
+                                    },
+                                    (e) => {
+                                        console.log(e);
+                                        console.log(chalk.red.inverse.bold("error occurred in assignment add "));
+                                    }
+                                );
                             }
                         );
+                    } else {
+                        res.clearCookie("token");
+                        res.redirect(301, "/login");
                     }
-                );
-            } else {
-                res.clearCookie("token");
-                res.redirect(301, "/login");
-            }
-        } else {
+                },
+                (e) => {
+                    console.log(e);
+                }
 
-            res.redirect(301, "/login");
+            )
         }
     });
 

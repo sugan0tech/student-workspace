@@ -12,7 +12,6 @@ router
     })
     .use(express.json())
     .use(express.urlencoded({ extended: true }));
-
 router
     .route("/")
     .get((req, res) => {

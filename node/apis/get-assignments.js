@@ -3,7 +3,7 @@ const route = express.Router();
 const func = require("../functions/auth_func");
 const chalk = require("chalk");
 const cookieParser = require("cookie-parser");
-const tok = require("../functions/token");
+const token = require("../functions/token");
 
 /**
  * request post with token cookie
@@ -35,42 +35,39 @@ route.route("/").post((req, res) => {
                 valid: bool,
                 payload: object
             } */
-        const tokenVerificationData = tok.verify(
-            req.cookies.token,
-            req.cookies.email
-        );
-        console.log(
-            chalk.bold.green.inverse("token verified status :"),
-            tokenVerificationData.valid
-        );
-        console.log(tokenVerificationData);
-        if (tokenVerificationData.valid) {
-            func
-                .getinfo(
-                    tokenVerificationData.payload.email,
-                    tokenVerificationData.payload.password
-                )
-                .then(
-                    (resolve) => {
-                        func.getAssignments(resolve.assignments).then(
+        token.verify(req.cookies.token, req.cookies.email).then(
+            (tokenVerificationData) => {
+                console.log(
+                    chalk.bold.green.inverse("token verified status :"),
+                    tokenVerificationData.valid
+                );
+                if (tokenVerificationData.valid) {
+                    func
+                        .getinfo(
+                            tokenVerificationData.payload.email,
+                            tokenVerificationData.payload.password
+                        )
+                        .then(
                             (resolve) => {
-                                res.send(resolve);
+                                func.getAssignments(resolve.assignments).then(
+                                    (data) => {
+                                        res.send(data);
+                                    },
+                                    (e) => {
+                                        console.log(e);
+                                    }
+                                );
                             },
                             (e) => {
                                 console.log(e);
                             }
                         );
-                    },
-                    (e) => {
-                        console.log(e);
-                    }
-                );
-        } else {
-            res.clearCookie("token");
-            res.redirect(301, "/login");
-        }
-    } else {
-        res.status(401).send("un authorised access");
+                } else {
+                    res.status(401).send("un authorized access");
+                }
+
+            }
+        )
     }
 });
 

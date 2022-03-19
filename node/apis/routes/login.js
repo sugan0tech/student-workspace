@@ -3,7 +3,7 @@ const router = express.Router();
 const func = require("../../functions/auth_func");
 const chalk = require("chalk");
 const cookieParser = require("cookie-parser");
-const tok = require("../../functions/token");
+const token = require("../../functions/token");
 require("dotenv").config();
 
 router
@@ -29,19 +29,25 @@ router
             /*returns js object 
             {
                 valid: bool,
-                payload: object
+                payload: object,
+                err: "error status with db",
             } */
-            const tokenVerificationData = tok.verify(req.cookies.token, req.cookies.email);
-            console.log(
-                chalk.bold.green.inverse("token verified status :"),
-                tokenVerificationData.valid
-            );
-            if (tokenVerificationData.valid) {
-                res.redirect(301, "/home");
-            } else {
-                res.clearCookie("token");
-                res.redirect(301, "/login");
-            }
+            token.verify(req.cookies.token, req.cookies.email).then(
+                (tokenVerificationData) => {
+                    console.log(
+                        chalk.bold.green.inverse("token verified status :"),
+                        tokenVerificationData.valid
+                    );
+                    if (tokenVerificationData.valid) {
+                        res.redirect(301, "/home");
+                    } else {
+                        res.clearCookie("token");
+                        res.redirect(301, "/login");
+                    }
+
+                }
+            )
+
         } else {
             func.check(req.body.email, req.body.password).then(
                 (value) => {
@@ -52,7 +58,7 @@ router
                         console.log(chalk.bold.green.inverse("\n\t user found \n"));
                         res.cookie(
                             "token",
-                            tok.create({
+                            token.create({
                                 email: req.body.email,
                                 password: req.body.password,
                             }), { maxAge: 30 * 24 * 60 * 60 * 1000 }
