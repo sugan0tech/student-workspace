@@ -51,7 +51,7 @@ const userSchema = mongo.Schema({
             { id: String, title: String, subs: [{ subject: String, date: Date }] }
         ],
         default: {
-            id: 'test exam id',
+            id: 'default data',
             title: 'sem exams',
             subs: [
                 { subject: 'maths', date: new Date },

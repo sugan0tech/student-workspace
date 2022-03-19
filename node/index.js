@@ -8,6 +8,7 @@ const update = require("./apis/routes/update");
 const del = require("./apis/routes/delete");
 const getAssignments = require("./apis/get-assignments");
 const addAssignment = require("./apis/add-assignment");
+const addExam = require("./apis/add-exam");
 const getBooks = require("./apis/get-books");
 const getExams = require("./apis/get-exams");
 const chalk = require("chalk");
@@ -43,6 +44,7 @@ app
     .use("/delete", del)
     .use("/api/getAssignments", getAssignments)
     .use("/api/addAssignment", addAssignment)
+    .use("/api/addExam", addExam)
     .use("/api/getBooks", getBooks)
     .use("/api/getExams", getExams);
 

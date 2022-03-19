@@ -54,18 +54,27 @@ route
                     );
                     if (tokenVerificationData.valid) {
                         const data = tokenVerificationData.payload;
-                        func.getinfo(data.email, data.password).then(
-                            (data) => {
-                                if (data != null) {
-                                    console.log(chalk.green.bold("\n\tuser info found\n"))
-                                    console.log(data);
-                                    res.send(data.examTime);
-                                } else {
-                                    res.send("user info can't be fetched");
-                                }
-                            },
-                            (e) => {
-                                console.log(chalk.red.bold("\n\terror in get-exams\n"), chalk.red.bold.inverse("\tlocation: ./api/get-exams\n"));
+                        test = {
+                            examTime: [{
+                                id: "test exam id",
+                                title: "sem exams",
+                                subs: [{
+                                        subject: "maths",
+                                        date: new Date(),
+                                    },
+                                    {
+                                        subject: "chemistry",
+                                        date: new Date(),
+                                    }
+                                ]
+                            }],
+                        }
+                        func.update(data.email, test).then(
+                            (bool) => {
+                                if (bool)
+                                    console.log(chalk.green.bold.inverse("Exam added successfully"));
+                                else
+                                    console.log(chalk.red.bold.inverse("failed adding exam"));
                             }
                         );
                     } else {

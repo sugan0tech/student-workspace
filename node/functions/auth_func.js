@@ -179,4 +179,21 @@ async function delAssignment(objId) {
         );
     }
 }
-module.exports = { push, check, update, del, getinfo, assignmentSave, addAssignment, getAssignments, delAssignment };
+
+async function addExam(email, data) {
+    try {
+        data.changedAt = new Date();
+        const updateExam = await user.updateOne({ email: email }, data);
+        console.log(updateExam);
+        console.log(chalk.green.bold("\n\t Exam added successfully"));
+        return true;
+    } catch (e) {
+        console.log(e);
+        console.log(
+            chalk.bold.red("\n\tError !!! in auth function (addExam)\n"),
+            chalk.bold.red.inverse("\tlocation: ./functions/auth_function.js\n")
+        );
+        return false;
+    }
+}
+module.exports = { push, check, update, del, getinfo, assignmentSave, addAssignment, getAssignments, delAssignment, addExam };
