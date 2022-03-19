@@ -84,9 +84,9 @@ async function getinfo(userMail, userPassword) {
     try {
         const val = await user.findOne({
             email: userMail,
-            password: hash(userPassword)
+            password: userPassword
         });
-        console.log("val", val);
+        console.log("user value :", val);
         return val
     } catch (e) {
         console.log(e);

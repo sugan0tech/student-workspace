@@ -32,11 +32,11 @@ route
                     if (tokenVerificationData.valid) {
                         const data = tokenVerificationData.payload;
                         func.getinfo(data.email, data.password).then(
-                            (resolve) => {
-                                if (resolve != null) {
+                            (data) => {
+                                if (data != null) {
                                     console.log(chalk.green.bold("\n\tuser info found\n"))
-                                    console.log(resolve);
-                                    res.send(resolve.examTime);
+                                    console.log(data);
+                                    res.send(data.examTime);
                                 } else {
                                     res.send("user info can't be fetched");
                                 }
